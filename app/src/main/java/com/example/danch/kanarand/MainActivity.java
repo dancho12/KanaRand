@@ -58,6 +58,8 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         spinner.setOnItemSelectedListener(itemSelectedListener);
+
+        full_rand2();
     }
 
     public void show(View v)
@@ -142,6 +144,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void full_rand(View v)
+    {
+        full_rand2();
+    }
+
+   void full_rand2()
     {
         Clean();
         int r = 0;
