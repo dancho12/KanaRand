@@ -1,17 +1,11 @@
 package com.example.danch.kanarand;
 
 import android.app.Fragment;
-//import android.support.v4.app.Fragment;
-import android.app.FragmentManager;
-import android.support.v13.app.FragmentPagerAdapter;
-//import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.RadioGroup;
@@ -19,12 +13,18 @@ import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 
+
+import com.example.danch.kanarand.R;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-public class MainActivity extends AppCompatActivity {
+/* Fragment used as page 1 */
+public class Page1Fragment extends Fragment {
+
+
     String Res = "";
     String Res2 = "";
     String[] cities = {"A", "KA", "SA", "TA", "NA", "HA","MA","YA","RA","WA","WO"};
@@ -33,74 +33,49 @@ public class MainActivity extends AppCompatActivity {
     private int selectedTest;
     RadioGroup radio;
     int ch=0;
-    //-----------------------------------------------------------------
-    private final String LOG_TAG = MainActivity.class.getSimpleName();
-
-    // Titles of the individual pages (displayed in tabs)
-    private final String[] PAGE_TITLES = new String[] {
-            "Page 1",
-            "Page 2",
-            "Page 3"
-    };
-
-    // The fragments that are used as the individual pages
-    private final Fragment[] PAGES = new Fragment[] {
-            new Page1Fragment(),
-            new Page2Fragment(),
-            new Page3Fragment()
-    };
-
-    // The ViewPager is responsible for sliding pages (fragments) in and out upon user input
-    private ViewPager mViewPager;
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        //-------------------------------------------
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View  rootView = inflater.inflate(R.layout.fragment_page1, container, false);
 
-        // Connect the ViewPager to our custom PagerAdapter. The PagerAdapter supplies the pages
-        // (fragments) to the ViewPager, which the ViewPager needs to display.
-        mViewPager = (ViewPager) findViewById(R.id.viewpager);
-        mViewPager.setAdapter(new MyPagerAdapter(getFragmentManager()));
+        RadioGroup radio = (RadioGroup)rootView.findViewById(R.id.radioGroup);
+        selectedTest = radio.getCheckedRadioButtonId();
 
-        // Connect the tabs with the ViewPager (the setupWithViewPager method does this for us in
-        // both directions, i.e. when a new tab is selected, the ViewPager switches to this page,
-        // and when the ViewPager switches to a new page, the corresponding tab is selected)
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-        tabLayout.setupWithViewPager(mViewPager);
-        //-------------------------------------------
+        Spinner spinner = (Spinner) rootView.findViewById(R.id.kana_select);
+        // Создаем адаптер ArrayAdapter с помощью массива строк и стандартной разметки элемета spinner
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), android.R.layout.simple_spinner_item, cities);
+        // Определяем разметку для использования при выборе элемента
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Применяем адаптер к элементу spinner
+        spinner.setAdapter(adapter);
 
+        AdapterView.OnItemSelectedListener itemSelectedListener = new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                // Получаем выбранный объект
+                item = (String)parent.getItemAtPosition(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        };
+        spinner.setOnItemSelectedListener(itemSelectedListener);
+
+        full_rand2();
+        public void full_rand(View v)
+        {
+            full_rand2(v);
+        }
+
+        return rootView;
     }
 
-    public class MyPagerAdapter extends FragmentPagerAdapter {
-
-        public MyPagerAdapter(FragmentManager fragmentManager) {
-            super(fragmentManager);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return PAGES[position];
-        }
-
-        @Override
-        public int getCount() {
-            return PAGES.length;
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return PAGE_TITLES[position];
-        }
-
-    }
 
     public void show(View v)
     {
-        selection = (TextView) findViewById(R.id.textView2);
+        selection = (TextView) v.findViewById(R.id.textView2);
         switch (ch) {
 
             case  0:
@@ -173,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void onClickRadioSelectTest (View v)
+    public void onClickRadioSelectTest2 (View v)
     {
         selectedTest = v.getId();
         Log.d("onClickRadioGroupSelectTest", "selectedTest="+selectedTest);
@@ -181,14 +156,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void full_rand(View v)
     {
-        full_rand2();
+        full_rand2(v);
     }
 
-    void full_rand2()
+    public void full_rand2(View v)
     {
         Clean();
         int r = 0;
-        Switch simpleSwitch = (Switch) findViewById(R.id.switch1);
+        Switch simpleSwitch = (Switch) v.findViewById(R.id.switch1);
         Boolean switchState = simpleSwitch.isChecked();
         switch (selectedTest) {
             case R.id.radioButton1: {
@@ -206,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        selection = (TextView) findViewById(R.id.textView2);
+        selection = (TextView) v.findViewById(R.id.textView2);
         Rand();
         if (switchState == (true)) {
             //selection.setText(OutPutLat());
@@ -219,10 +194,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void fu(View v) {
+    public void fu2(View v) {
         Clean();
         int r = 0;
-        Switch simpleSwitch = (Switch) findViewById(R.id.switch1);
+        Switch simpleSwitch = (Switch) v.findViewById(R.id.switch1);
         Boolean switchState = simpleSwitch.isChecked();
 
 
@@ -356,7 +331,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        selection = (TextView) findViewById(R.id.textView2);
+        selection = (TextView) rootView.findViewById(R.id.textView2);
         Rand();
         if (switchState == (true)) {
             //selection.setText(OutPutLat());
@@ -415,4 +390,5 @@ public class MainActivity extends AppCompatActivity {
         Res = str[index-1];
         Res2 = str2[index-1];
     }
+
 }
