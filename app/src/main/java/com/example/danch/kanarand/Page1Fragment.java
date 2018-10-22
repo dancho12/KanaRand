@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Switch;
@@ -33,9 +34,10 @@ public class Page1Fragment extends Fragment {
     private int selectedTest;
     RadioGroup radio;
     int ch=0;
+    View  rootView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View  rootView = inflater.inflate(R.layout.fragment_page1, container, false);
+        rootView = inflater.inflate(R.layout.fragment_page1, container, false);
 
         RadioGroup radio = (RadioGroup)rootView.findViewById(R.id.radioGroup);
         selectedTest = radio.getCheckedRadioButtonId();
@@ -64,18 +66,13 @@ public class Page1Fragment extends Fragment {
         spinner.setOnItemSelectedListener(itemSelectedListener);
 
         full_rand2();
-        public void full_rand(View v)
-        {
-            full_rand2(v);
-        }
-
         return rootView;
     }
 
 
     public void show(View v)
     {
-        selection = (TextView) v.findViewById(R.id.textView2);
+        selection = (TextView) rootView.findViewById(R.id.textView2);
         switch (ch) {
 
             case  0:
@@ -156,14 +153,14 @@ public class Page1Fragment extends Fragment {
 
     public void full_rand(View v)
     {
-        full_rand2(v);
+        full_rand2();
     }
 
-    public void full_rand2(View v)
+    void full_rand2()
     {
         Clean();
         int r = 0;
-        Switch simpleSwitch = (Switch) v.findViewById(R.id.switch1);
+        Switch simpleSwitch = (Switch) rootView.findViewById(R.id.switch1);
         Boolean switchState = simpleSwitch.isChecked();
         switch (selectedTest) {
             case R.id.radioButton1: {
@@ -181,7 +178,7 @@ public class Page1Fragment extends Fragment {
             }
         }
 
-        selection = (TextView) v.findViewById(R.id.textView2);
+        selection = (TextView) rootView.findViewById(R.id.textView2);
         Rand();
         if (switchState == (true)) {
             //selection.setText(OutPutLat());
@@ -197,7 +194,7 @@ public class Page1Fragment extends Fragment {
     public void fu2(View v) {
         Clean();
         int r = 0;
-        Switch simpleSwitch = (Switch) v.findViewById(R.id.switch1);
+        Switch simpleSwitch = (Switch) rootView.findViewById(R.id.switch1);
         Boolean switchState = simpleSwitch.isChecked();
 
 
