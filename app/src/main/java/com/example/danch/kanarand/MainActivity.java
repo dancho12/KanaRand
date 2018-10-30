@@ -189,8 +189,6 @@ public class MainActivity extends AppCompatActivity {
         Switch simpleSwitch = (Switch) findViewById(R.id.switch1);
         Boolean switchState = simpleSwitch.isChecked();
 
-
-
         switch (selectedTest) {
             case R.id.radioButton1: {
                 switch (item) {
