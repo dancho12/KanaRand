@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">KanaRand</string>
+    <string name="radioButton3">Русский</string>
 </resources>

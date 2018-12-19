@@ -20,12 +20,15 @@ public class MainActivity extends AppCompatActivity {
 
     String Res = "";
     String Res2 = "";
+    String Res3 = "";
 
     String[] cities = {"A", "KA", "SA", "TA", "NA", "HA","MA","YA","RA","WA","WO"};
     TextView selection;
     String item;
     private int selectedTest;
     RadioGroup radio;
+    private int selectedTest2;
+    RadioGroup radio2;
     int ch=0;
 
     @Override
@@ -33,8 +36,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        RadioGroup radio = (RadioGroup)findViewById(R.id.radioGroup);
+
+        RadioGroup radio = (RadioGroup)findViewById(R.id.radioGroup1);
         selectedTest = radio.getCheckedRadioButtonId();
+
+        RadioGroup radio2 = (RadioGroup)findViewById(R.id.radioGroup2);
+        selectedTest2 = radio2.getCheckedRadioButtonId();
 
         Spinner spinner = (Spinner) findViewById(R.id.kana_select);
         // Создаем адаптер ArrayAdapter с помощью массива строк и стандартной разметки элемета spinner
@@ -62,16 +69,30 @@ public class MainActivity extends AppCompatActivity {
         full_rand2();
     }
 
+
+
+
+
     public void show(View v)
     {
         selection = (TextView) findViewById(R.id.textView2);
         switch (ch) {
 
             case  0:
-                //selection.setText(OutPutLat());
-                selection.setText(Res2);
-                ch = 1;
-                Log.d("Переключатель", "ch=" + ch);
+                switch (selectedTest2) {
+                    case R.id.radioButton3: {
+                        selection.setText(Res3);
+                        ch = 1;
+                        Log.d("Переключатель", "ch=" + ch);
+                        break;
+                    }
+                    case R.id.radioButton4: {
+                        selection.setText(Res2);
+                        ch = 1;
+                        Log.d("Переключатель", "ch=" + ch);
+                        break;
+                    }
+                }
                 break;
             case 1:
                 //selection.setText(OutPutRand());
@@ -107,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 if (r == 2) {
                     a++;
-                    if (a < 42) {
+                    if (a < 67) {
 
                         Imput(strLine);
 
@@ -115,20 +136,52 @@ public class MainActivity extends AppCompatActivity {
                 }
                 if (r == 3) {
                     a++;
-                    if (a > 41 && a < 81) {
+                    if (a > 66 && a < 127) {
+
+                        Imput(strLine);
+
+                    }
+                }
+                if (r == 8) {
+                    a++;
+                    if (a < 11) {
+
+                        Imput(strLine);
+                    }
+                }
+                if (r == 9) {
+                    a++;
+                    if (a > 10 && a < 21) {
 
                         Imput(strLine);
 
                     }
                 }
                 b++;
+                if (b > 20&&(r==9||r==8)) {
+
+                    Imput2(strLine);
+                }
+                if (b > 30&&(r==9||r==8)) {
+
+                    Imput3(strLine);
+                }
+
                 if (b > 10&&(r==6||r==1)) {
 
                     Imput2(strLine);
                 }
-                if (b > 82&&(r==2||r==3)) {
+                if (b > 15&&(r==6||r==1)) {
+
+                    Imput3(strLine);
+                }
+                if (b > 127&&(r==2||r==3)) {
 
                     Imput2(strLine);
+                }
+                if (b > 188&&(r==2||r==3)) {
+
+                    Imput3(strLine);
                 }
             }
             fstream.close();
@@ -143,6 +196,11 @@ public class MainActivity extends AppCompatActivity {
         Log.d("onClickRadioGroupSelectTest", "selectedTest="+selectedTest);
     }
 
+    public void onClickRadioSelectTest2 (View v)
+    {
+        selectedTest2 = v.getId();
+        Log.d("onClickRadioGroupSelectTest", "selectedTest="+selectedTest2);
+    }
     public void full_rand(View v)
     {
         full_rand2();
@@ -173,9 +231,20 @@ public class MainActivity extends AppCompatActivity {
         selection = (TextView) findViewById(R.id.textView2);
         Rand();
         if (switchState == (true)) {
-            //selection.setText(OutPutLat());
-            selection.setText(Res2);
-            ch=1;
+            switch (selectedTest2) {
+                case R.id.radioButton3: {
+                    selection.setText(Res3);
+                    ch = 1;
+                    Log.d("Переключатель", "ch=" + ch);
+                    break;
+                }
+                case R.id.radioButton4: {
+                    selection.setText(Res2);
+                    ch = 1;
+                    Log.d("Переключатель", "ch=" + ch);
+                    break;
+                }
+            }
         } else {
             //selection.setText(OutPutRand());
             selection.setText(Res);
@@ -201,18 +270,18 @@ public class MainActivity extends AppCompatActivity {
                         readFile(fstream1, r);
                         break;
                     case "KA":
-                        r = 1;
+                        r = 8;
                         InputStream fstream2 = getResources().openRawResource(R.raw.ka);
                         readFile(fstream2, r);
                         break;
 
                     case "SA":
-                        r = 1;
+                        r = 8;
                         InputStream fstream3 = getResources().openRawResource(R.raw.sa);
                         readFile(fstream3, r);
                         break;
                     case "TA":
-                        r = 1;
+                        r = 8;
                         InputStream fstream5 = getResources().openRawResource(R.raw.ta);
                         readFile(fstream5, r);
                         break;
@@ -222,7 +291,7 @@ public class MainActivity extends AppCompatActivity {
                         readFile(fstream6, r);
                         break;
                     case "HA":
-                        r = 1;
+                        r = 8;
                         InputStream fstream7 = getResources().openRawResource(R.raw.ha);
                         readFile(fstream7, r);
                         break;
@@ -265,18 +334,18 @@ public class MainActivity extends AppCompatActivity {
                         readFile(fstream1, r);
                         break;
                     case "KA":
-                        r = 6;
+                        r = 9;
                         InputStream fstream2 = getResources().openRawResource(R.raw.ka);
                         readFile(fstream2, r);
                         break;
 
                     case "SA":
-                        r = 6;
+                        r = 9;
                         InputStream fstream3 = getResources().openRawResource(R.raw.sa);
                         readFile(fstream3, r);
                         break;
                     case "TA":
-                        r = 6;
+                        r = 9;
                         InputStream fstream5 = getResources().openRawResource(R.raw.ta);
                         readFile(fstream5, r);
                         break;
@@ -286,7 +355,7 @@ public class MainActivity extends AppCompatActivity {
                         readFile(fstream6, r);
                         break;
                     case "HA":
-                        r = 6;
+                        r = 9;
                         InputStream fstream7 = getResources().openRawResource(R.raw.ha);
                         readFile(fstream7, r);
                         break;
@@ -323,9 +392,20 @@ public class MainActivity extends AppCompatActivity {
         selection = (TextView) findViewById(R.id.textView2);
         Rand();
         if (switchState == (true)) {
-            //selection.setText(OutPutLat());
-            selection.setText(Res2);
-            ch=1;
+            switch (selectedTest2) {
+                case R.id.radioButton3: {
+                    selection.setText(Res3);
+                    ch = 1;
+                    Log.d("Переключатель", "ch=" + ch);
+                    break;
+                }
+                case R.id.radioButton4: {
+                    selection.setText(Res2);
+                    ch = 1;
+                    Log.d("Переключатель", "ch=" + ch);
+                    break;
+                }
+            }
         } else {
             //selection.setText(OutPutRand());
             selection.setText(Res);
@@ -335,9 +415,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     String st = "STOP";
-    int a=0,b=0;
-    String[] str =new String[200];
-    String[] str2 = new String[200];
+    int a=0,b=0,c=0;
+    String[] str =new String[300];
+    String[] str2 = new String[300];
+    String[] str3 = new String[300];
     int index2=10;
 
 
@@ -355,6 +436,13 @@ public class MainActivity extends AppCompatActivity {
             a++;
         }
     }
+    void Imput3(String cstr) {
+        if(!cstr.equals(st))
+        {
+            str3[c] = cstr;
+            c++;
+        }
+    }
 
     void Clean() {
 
@@ -366,6 +454,7 @@ public class MainActivity extends AppCompatActivity {
         Res = "";
         b = 0;
         a=0;
+        c=0;
     }
 
     void Rand() {
@@ -378,6 +467,7 @@ public class MainActivity extends AppCompatActivity {
         index2 =index;
         Res = str[index-1];
         Res2 = str2[index-1];
+        Res3 = str3[index-1];
     }
 
 }

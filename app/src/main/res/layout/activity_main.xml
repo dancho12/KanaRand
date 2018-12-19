@@ -65,15 +65,46 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="32dp"
-        android:text="Latin"
+        android:layout_marginBottom="72dp"
+        android:text="Транскрипция"
         app:layout_constraintBottom_toTopOf="@+id/kana_select"
-        app:layout_constraintEnd_toStartOf="@+id/radioGroup"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toStartOf="@+id/radioGroup1"
+        app:layout_constraintHorizontal_bias="0.203"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button" />
 
     <RadioGroup
-        android:id="@+id/radioGroup"
+        android:id="@+id/radioGroup2"
+        android:layout_width="0dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="32dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/textView4"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <RadioButton
+            android:id="@+id/radioButton3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="true"
+            android:onClick="onClickRadioSelectTest2"
+            android:text="Русский" />
+
+        <RadioButton
+            android:id="@+id/radioButton4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onClickRadioSelectTest2"
+            android:text="Английский" />
+    </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/radioGroup1"
         android:layout_width="0dp"
         android:layout_height="34dp"
         android:layout_marginBottom="32dp"

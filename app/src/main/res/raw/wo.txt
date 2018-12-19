@@ -13,3 +13,8 @@ STOP
 WO
 STOP
 N
+STOP
+STOP
+О
+STOP
+Н

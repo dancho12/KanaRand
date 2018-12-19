@@ -13,3 +13,8 @@ STOP
 YU
 STOP
 YO
+Я
+STOP
+Ю
+STOP
+Ё
