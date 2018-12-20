@@ -104,6 +104,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void readFile(InputStream fstream, int r) {
+        Switch simpleSwitch = (Switch) findViewById(R.id.switch2);
+        Boolean switchState = simpleSwitch.isChecked();
+
         try{
             int a=0,b=0;
             //InputStream fstream = getResources().openRawResource(R.raw.test);
@@ -144,27 +147,59 @@ public class MainActivity extends AppCompatActivity {
                 }
                 if (r == 8) {
                     a++;
-                    if (a < 11) {
+                    if (switchState == (true)) {
+                        if (a < 11) {
 
-                        Imput(strLine);
+                            Imput(strLine);
+                        }
+                    }
+                    else
+                    {
+                        if (a < 6) {
+
+                            Imput(strLine);
+                        }
                     }
                 }
                 if (r == 9) {
                     a++;
-                    if (a > 10 && a < 21) {
+                    if (switchState == (true)) {
+                        if (a > 10 && a < 21) {
 
-                        Imput(strLine);
+                            Imput(strLine);
 
+                        }
+                    }
+                    else
+                    {
+                        if (a > 10 && a < 16) {
+
+                            Imput(strLine);
+
+                        }
                     }
                 }
                 b++;
-                if (b > 20&&(r==9||r==8)) {
+                if (switchState == (true)) {
+                    if (b > 20 && (r == 9 || r == 8)) {
 
-                    Imput2(strLine);
+                        Imput2(strLine);
+                    }
+                    if (b > 30 && (r == 9 || r == 8)) {
+
+                        Imput3(strLine);
+                    }
                 }
-                if (b > 30&&(r==9||r==8)) {
+                else
+                {
+                    if (b > 20 && b<26 &&((r == 9 || r == 8))) {
 
-                    Imput3(strLine);
+                        Imput2(strLine);
+                    }
+                    if (b > 30 &&b<36 &&(r == 9 || r == 8)) {
+
+                        Imput3(strLine);
+                    }
                 }
 
                 if (b > 10&&(r==6||r==1)) {
@@ -415,7 +450,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     String st = "STOP";
-    int a=0,b=0,c=0;
+    int a=0,b=0,c=0,f=0;
     String[] str =new String[300];
     String[] str2 = new String[300];
     String[] str3 = new String[300];
@@ -443,6 +478,7 @@ public class MainActivity extends AppCompatActivity {
             c++;
         }
     }
+
 
     void Clean() {
 
