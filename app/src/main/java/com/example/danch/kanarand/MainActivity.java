@@ -161,6 +161,22 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 }
+                if (r == 10) {
+                    a++;
+                    if (switchState == (true)) {
+                        if (a < 16) {
+
+                            Imput(strLine);
+                        }
+                    }
+                    else
+                    {
+                        if (a < 6) {
+
+                            Imput(strLine);
+                        }
+                    }
+                }
                 if (r == 9) {
                     a++;
                     if (switchState == (true)) {
@@ -179,8 +195,34 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 }
+                if (r == 11) {
+                    a++;
+                    if (switchState == (true)) {
+                        if (a > 15 && a < 31) {
+
+                            Imput(strLine);
+
+                        }
+                    }
+                    else
+                    {
+                        if (a > 15 && a < 21) {
+
+                            Imput(strLine);
+
+                        }
+                    }
+                }
                 b++;
                 if (switchState == (true)) {
+                    if (b > 30 && (r == 10 || r == 11)) {
+
+                        Imput2(strLine);
+                    }
+                    if (b > 45 && (r == 10 || r == 11)) {
+
+                        Imput3(strLine);
+                    }
                     if (b > 20 && (r == 9 || r == 8)) {
 
                         Imput2(strLine);
@@ -326,7 +368,7 @@ public class MainActivity extends AppCompatActivity {
                         readFile(fstream6, r);
                         break;
                     case "HA":
-                        r = 8;
+                        r = 10;
                         InputStream fstream7 = getResources().openRawResource(R.raw.ha);
                         readFile(fstream7, r);
                         break;
@@ -390,7 +432,7 @@ public class MainActivity extends AppCompatActivity {
                         readFile(fstream6, r);
                         break;
                     case "HA":
-                        r = 9;
+                        r = 11;
                         InputStream fstream7 = getResources().openRawResource(R.raw.ha);
                         readFile(fstream7, r);
                         break;
