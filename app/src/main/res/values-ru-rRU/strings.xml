@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">KanaRand</string>
+    <string name="radioButton1">Катакана</string>
+    <string name="radioButton2">Хирагана</string>
+    <string name="radioButton3">Русский</string>
+    <string name="radioButton4">Английский</string>
+    <string name="Random_Row">Случайный в ряду</string>
+    <string name="Row">Ряд:</string>
+    <string name="Full">Случайный символ</string>
+    <string name="Switch1">Транскрипция</string>
+    <string name="Switch2">Хан/Дакутэн</string>
+</resources>

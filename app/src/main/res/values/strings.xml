@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">KanaRand</string>
-    <string name="radioButton3">Русский</string>
+    <string name="radioButton1">Katakana</string>
+    <string name="radioButton2">Hiragana</string>
+    <string name="radioButton3">Russian</string>
+    <string name="radioButton4">English</string>
+    <string name="Random_Row">Random in Row</string>
+    <string name="Row">Row:</string>
+    <string name="Full">Full Random</string>
+    <string name="Switch1">Transcription</string>
+    <string name="Switch2">Han/Dakuten</string>
+    <string name="Text" translatable="false">あ</string>
 </resources>

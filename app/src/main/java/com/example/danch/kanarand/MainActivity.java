@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     String Res2 = "";
     String Res3 = "";
 
-    String[] cities = {"A", "KA", "SA", "TA", "NA", "HA","MA","YA","RA","WA","WO"};
+    String[] rows = {"A", "KA", "SA", "TA", "NA", "HA","MA","YA","RA","WA","WO"};
     TextView selection;
     String item;
     private int selectedTest;
@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         RadioGroup radio = (RadioGroup)findViewById(R.id.radioGroup1);
         selectedTest = radio.getCheckedRadioButtonId();
 
@@ -45,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
         Spinner spinner = (Spinner) findViewById(R.id.kana_select);
         // Создаем адаптер ArrayAdapter с помощью массива строк и стандартной разметки элемета spinner
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, cities);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, rows);
         // Определяем разметку для использования при выборе элемента
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Применяем адаптер к элементу spinner
@@ -234,6 +233,15 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else
                 {
+                    if (b > 30 && b<36 &&((r == 10 || r == 11))) {
+
+                        Imput2(strLine);
+                    }
+                    if (b > 45 &&b<51 &&(r == 10 || r == 11)) {
+
+                        Imput3(strLine);
+                    }
+
                     if (b > 20 && b<26 &&((r == 9 || r == 8))) {
 
                         Imput2(strLine);
@@ -540,7 +548,9 @@ public class MainActivity extends AppCompatActivity {
         int index = (int) ( Math.random() * b+1);
         if(index==index2)
         {
-            index = (int) ( Math.random() * b+1);
+            while (index==index2) {
+                index = (int) (Math.random() * b + 1);
+            }
         }
         index2 =index;
         Res = str[index-1];
