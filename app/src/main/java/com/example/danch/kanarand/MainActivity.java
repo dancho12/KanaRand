@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Switch;
@@ -314,6 +315,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         selection = (TextView) findViewById(R.id.textView2);
+        selection.setTextSize(150);
         Rand();
         if (switchState == (true)) {
             switch (selectedTest2) {
@@ -475,6 +477,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         selection = (TextView) findViewById(R.id.textView2);
+        selection.setTextSize(150);
         Rand();
         if (switchState == (true)) {
             switch (selectedTest2) {
@@ -506,6 +509,9 @@ public class MainActivity extends AppCompatActivity {
     String[] str3 = new String[300];
     int index2=10;
 
+    String[] num1 = new String[300];
+    String numres="";
+    int s = 1;
 
     void Imput(String cstr) {
         if(!cstr.equals(st)) {
@@ -556,6 +562,182 @@ public class MainActivity extends AppCompatActivity {
         Res = str[index-1];
         Res2 = str2[index-1];
         Res3 = str3[index-1];
+    }
+
+    private void readFile2(InputStream fstream) {
+        Switch simpleSwitch = (Switch) findViewById(R.id.switch2);
+        Boolean switchState = simpleSwitch.isChecked();
+
+        try{
+            int a=0,b=0;
+            //InputStream fstream = getResources().openRawResource(R.raw.test);
+            BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
+            String strLine;
+            while ((strLine = br.readLine()) != null) {
+                System.out.println(strLine);
+
+                ImputNum(strLine);
+
+            }
+            fstream.close();
+        }catch (IOException e){
+            System.out.println("Ошибка");
+        }
+    }
+    void ImputNum(String cstr) {
+        if(!cstr.equals(st))
+        {
+            num1[s] = cstr;
+            s++;
+        }
+    }
+
+    void r100(int indx)
+    {
+        if(indx<10)
+        {
+            if(indx!=0) {
+                numres = numres + " " + num1[indx];
+            }
+        }
+        else {
+            int y = indx/10;
+            numres = numres+" "+num1[y];
+            numres = numres+" "+num1[10];
+            y = indx%10;
+            if(y!=0) {
+                numres = numres +" "+ num1[y];
+        }
+        }
+    }
+    void r1000(int indx) {
+        if(indx<10)
+        {
+            if(indx!=0) {
+                numres = numres + " " + num1[indx];
+            }
+        }
+        else {
+            if ((indx / 100)==3) {
+                numres = numres + " " + "САМБЯКУ";
+                indx = indx - 300;
+                r100(indx);
+            } else if ((indx / 100)==6) {
+                numres = numres + " " + "РОППЯКУ";
+                indx = indx - 600;
+                r100(indx);
+            } else if ((indx / 100)==8) {
+                numres = numres + " " + "ХАППЯКУ";
+                indx = indx - 800;
+                r100(indx);
+            } else {
+                int y = indx / 100;
+                numres = numres + " " +num1[y];
+                numres = numres + " " + num1[11];
+                indx = indx - (y * 100);
+                r100(indx);
+            }
+        }
+    }
+    void r10000(int indx)
+    {
+        if(indx<10)
+        {
+            if(indx!=0) {
+                numres = numres + " " + num1[indx];
+            }
+        }
+        else {
+
+            if ((indx / 1000) == 3) {
+                numres = numres + " " + "САНДЗЭН";
+                indx = indx - 3000;
+
+                r1000(indx);
+            } else if ((indx / 1000) == 8) {
+                numres = numres + " " + "ХАССЭН";
+                indx = indx - 8000;
+                r1000(indx);
+            } else {
+                int y = indx / 1000;
+                numres = numres + " " + num1[y];
+                numres = numres + " " + num1[12];
+                indx = indx - (y * 1000);
+                r1000(indx);
+            }
+        }
+    }
+    public void number(View v)
+    {
+        Clean();
+        numres ="";
+        InputStream fstream = getResources().openRawResource(R.raw.num);
+        readFile2(fstream);
+        int a;
+        TextView n= (TextView)findViewById(R.id.textView2);
+        final EditText editText = (EditText)findViewById(R.id.editText);
+        String number = editText.getText().toString();
+        a = Integer.parseInt(number);
+        int indx = (int) (Math.random() * a + 1);
+        //int indx = a;
+        if(indx<11)
+        {
+            if(indx ==4)
+            {
+                numres = "СИ";
+            }
+            else if(indx ==7)
+            {
+                numres = "СИЧИ";
+            }
+            else if(indx ==9)
+            {
+                numres = "КУ";
+            }
+            else {
+                numres = num1[indx];
+            }
+        }
+        else if(indx==100)
+        {
+            numres = numres + num1[11];
+        }
+        else if(indx==1000)
+        {
+            numres = numres + num1[12];
+        }
+        else if(indx==10000)
+        {
+            numres = numres + num1[13];
+        }
+        else if(indx>10)
+        {
+            if(indx<100)
+            {
+               r100(indx);
+            }
+            else if(indx<1000)
+            {
+                r1000(indx);
+            }
+            else if(indx<10000)
+            {
+                r10000(indx);
+            }
+            else if(indx>10000)
+            {
+                int y = indx / 10000;
+                numres = numres + " " + num1[y];
+                numres = numres + " " + num1[13];
+                indx = indx - (y * 10000);
+                r10000(indx);
+            }
+        }
+        Res = numres;
+        Res2 = Integer.toString(indx);
+        Res3 = Integer.toString(indx);
+        n.setTextSize(36);
+        n.setText(Res);
     }
 
 }
