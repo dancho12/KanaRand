@@ -526,7 +526,7 @@ public class Kana extends MainActivity {
             selection.setText(Res);
             ch=0;
         }
-        bt_ch();
+        bt_ch2();
     }
 
     public void click_bt_ch(View v)
@@ -538,7 +538,7 @@ public class Kana extends MainActivity {
         Log.d("onClick_bt_ch", "btss="+btss);
         //Log.d("onClick_bt_ch", "Res="+btss);
         selection = (TextView) findViewById(R.id.textView2);
-        if(btss == Res2)
+        if(btss == Res3)
         {
 
             selection.setTextSize(150);
@@ -562,6 +562,20 @@ public class Kana extends MainActivity {
     String[] str3 = new String[300];
     int index2=10;
 
+    void bt_ch2()
+    {
+
+        bt =(TextView) findViewById(R.id.bt_ch1);
+        bt.setText(str3[0]);
+        bt =(TextView) findViewById(R.id.bt_ch2);
+        bt.setText(str3[1]);
+        bt =(TextView) findViewById(R.id.bt_ch3);
+        bt.setText(str3[2]);
+        bt =(TextView) findViewById(R.id.bt_ch4);
+        bt.setText(str3[3]);
+        bt =(TextView) findViewById(R.id.bt_ch5);
+        bt.setText(str3[4]);
+    }
 
     void bt_ch()
     {
