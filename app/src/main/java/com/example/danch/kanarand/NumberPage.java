@@ -3,7 +3,6 @@ package com.example.danch.kanarand;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -27,6 +26,9 @@ TextView n;
         ActionBar actionBar =getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
+
+        InputStream fstream = getResources().openRawResource(R.raw.num);
+        readFile2(fstream);
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -62,7 +64,8 @@ TextView n;
     String st = "STOP";
     String[] num1 = new String[300];
     String numres="";
-    String numres1="";
+    String numres2 ="";
+    String numres3 ="";
     int s = 1;
 
     public void show2(View v)
@@ -71,7 +74,7 @@ TextView n;
         switch (ch2) {
 
             case  0:
-                n.setText(numres1);
+                n.setText(numres2);
                 ch2 = 1;
                 break;
             case 1:
@@ -107,7 +110,7 @@ TextView n;
         }
     }
 
-    void r100(int indx)
+    void r(int indx)
     {
         if(indx<10)
         {
@@ -115,86 +118,97 @@ TextView n;
                 numres = numres + " " + num1[indx];
             }
         }
-        else {
+        else if(indx<100){
             int y = indx/10;
-            numres = numres+" "+num1[y];
+            if(y!=1){
+                numres = numres+" "+num1[y];
+            }
             numres = numres+" "+num1[10];
             y = indx%10;
             if(y!=0) {
                 numres = numres +" "+ num1[y];
             }
-        }
-    }
-    void r1000(int indx) {
-        if(indx<10)
-        {
-            if(indx!=0) {
-                numres = numres + " " + num1[indx];
-            }
-        }
-        else {
-            if ((indx / 100)==3) {
-                numres = numres + " " + "САМБЯКУ";
-                indx = indx - 300;
-                r100(indx);
-            } else if ((indx / 100)==6) {
-                numres = numres + " " + "РОППЯКУ";
-                indx = indx - 600;
-                r100(indx);
-            } else if ((indx / 100)==8) {
-                numres = numres + " " + "ХАППЯКУ";
-                indx = indx - 800;
-                r100(indx);
-            } else {
-                int y = indx / 100;
-                numres = numres + " " +num1[y];
-                numres = numres + " " + num1[11];
-                indx = indx - (y * 100);
-                r100(indx);
-            }
-        }
-    }
-    void r10000(int indx)
-    {
-        if(indx<10)
-        {
-            if(indx!=0) {
-                numres = numres + " " + num1[indx];
-            }
-        }
-        else {
 
-            if ((indx / 1000) == 3) {
-                numres = numres + " " + "САНДЗЭН";
-                indx = indx - 3000;
 
-                r1000(indx);
-            } else if ((indx / 1000) == 8) {
-                numres = numres + " " + "ХАССЭН";
-                indx = indx - 8000;
-                r1000(indx);
-            } else {
-                int y = indx / 1000;
-                numres = numres + " " + num1[y];
-                numres = numres + " " + num1[12];
-                indx = indx - (y * 1000);
-                r1000(indx);
+        }
+        else if(indx<1000)
+        {
+                if ((indx / 100) == 3) {
+                    numres = numres + " " + "САМБЯКУ";
+                    indx = indx - 300;
+                    r(indx);
+                } else if ((indx / 100) == 6) {
+                    numres = numres + " " + "РОППЯКУ";
+                    indx = indx - 600;
+                    r(indx);
+                } else if ((indx / 100) == 8) {
+                    numres = numres + " " + "ХАППЯКУ";
+                    indx = indx - 800;
+                    r(indx);
+                } else {
+                    int y = indx / 100;
+                    if (y != 1) {
+                        numres = numres + " " + num1[y];
+                    }
+                    numres = numres + " " + num1[11];
+                    indx = indx - (y * 100);
+                    r(indx);
+                }
+        }
+        else if(indx<10000)
+        {
+                if ((indx / 1000) == 3) {
+                    numres = numres + " " + "САНДЗЭН";
+                    indx = indx - 3000;
+
+                    r(indx);
+                }
+                else if ((indx / 1000) == 8) {
+                    numres = numres + " " + "ХАССЭН";
+                    indx = indx - 8000;
+                    r(indx);
+                } else {
+                    int y = indx / 1000;
+                    if (y != 1) {
+                        numres = numres + " " + num1[y];
+                    }
+                    numres = numres + " " + num1[12];
+                    indx = indx - (y * 1000);
+                    r(indx);
+                }
+
+        }
+        else if(indx>=10000)
+        {
+            int y = indx / 10000;
+            if(y!=1){
+                numres = numres+" "+num1[y];
             }
+            numres = numres + " " + num1[13];
+            indx = indx - (y * 10000);
+            r(indx);
         }
     }
+
     public void number(View v)
     {
-        //Clean();
+        Switch simpleSwitch = (Switch) findViewById(R.id.switch3);//переключатель рандома
+        Boolean switchState = simpleSwitch.isChecked();
         numres ="";
-        InputStream fstream = getResources().openRawResource(R.raw.num);
-        readFile2(fstream);
         n= (TextView)findViewById(R.id.textView3);
         int a;
         final EditText editText = (EditText)findViewById(R.id.editText2);
         String number = editText.getText().toString();
         a = Integer.parseInt(number);
-        int indx = (int) (Math.random() * a + 1);
-        //int indx = a;
+        int indx;
+        if(switchState ==(true)){
+            indx = (int) (Math.random() * a + 1);
+        }
+        else
+        {
+            indx = a;
+        }
+
         if(indx<11)
         {
             if(indx ==4)
@@ -213,44 +227,24 @@ TextView n;
                 numres = num1[indx];
             }
         }
-        else if(indx==100)
-        {
-            numres = numres + num1[11];
-        }
-        else if(indx==1000)
-        {
-            numres = numres + num1[12];
-        }
-        else if(indx==10000)
-        {
-            numres = numres + num1[13];
-        }
         else if(indx>10)
         {
-            if(indx<100)
-            {
-                r100(indx);
-            }
-            else if(indx<1000)
-            {
-                r1000(indx);
-            }
-            else if(indx<10000)
-            {
-                r10000(indx);
-            }
-            else if(indx>10000)
-            {
-                int y = indx / 10000;
-                numres = numres + " " + num1[y];
-                numres = numres + " " + num1[13];
-                indx = indx - (y * 10000);
-                r10000(indx);
-            }
+            r(indx);
         }
 
-       numres1 = Integer.toString(indx);
+        numres2 = Integer.toString(indx);
         n.setTextSize(36);
-        n.setText(numres);
+        Switch simpleSwitch2 = (Switch) findViewById(R.id.switch4);
+        Boolean switchState2 = simpleSwitch2.isChecked();
+        if(switchState2 ==(true))
+        {
+            n.setText(numres2);
+            ch2 = 1;
+        }
+        else {
+            n.setText(numres);
+            ch2 = 0;
+        }
+
     }
 }

@@ -1,6 +1,7 @@
 package com.example.danch.kanarand;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -34,6 +35,7 @@ public class Kana extends MainActivity {
     private int selectedTest2;
     RadioGroup radio2;
     int ch=0;
+    TextView bt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +76,8 @@ public class Kana extends MainActivity {
         spinner.setOnItemSelectedListener(itemSelectedListener);
 
         full_rand2();
+        View btr = findViewById(R.id.tbr);
+        btr.setVisibility(View.INVISIBLE);
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -312,6 +316,8 @@ public class Kana extends MainActivity {
 
     void full_rand2()
     {
+        View btr = findViewById(R.id.tbr);
+        btr.setVisibility(View.INVISIBLE);
         Clean();
         int r = 0;
         Switch simpleSwitch = (Switch) findViewById(R.id.switch1);
@@ -334,6 +340,7 @@ public class Kana extends MainActivity {
 
         selection = (TextView) findViewById(R.id.textView2);
         selection.setTextSize(150);
+        selection.setTextColor(Color.BLACK);
         Rand();
         if (switchState == (true)) {
             switch (selectedTest2) {
@@ -363,7 +370,8 @@ public class Kana extends MainActivity {
         Switch simpleSwitch = (Switch) findViewById(R.id.switch1);
         Boolean switchState = simpleSwitch.isChecked();
 
-
+        View btr = findViewById(R.id.tbr);
+        btr.setVisibility(View.VISIBLE);
 
         switch (selectedTest) {
             case R.id.radioButton1: {
@@ -496,6 +504,7 @@ public class Kana extends MainActivity {
 
         selection = (TextView) findViewById(R.id.textView2);
         selection.setTextSize(150);
+        selection.setTextColor(Color.BLACK);
         Rand();
         if (switchState == (true)) {
             switch (selectedTest2) {
@@ -517,6 +526,32 @@ public class Kana extends MainActivity {
             selection.setText(Res);
             ch=0;
         }
+        bt_ch();
+    }
+
+    public void click_bt_ch(View v)
+    {
+        int bts = v.getId();
+        Log.d("onClick_bt_ch", "bts="+bts);
+        TextView bt = (TextView) findViewById(bts);
+        String btss = bt.getText().toString();
+        Log.d("onClick_bt_ch", "btss="+btss);
+        //Log.d("onClick_bt_ch", "Res="+btss);
+        selection = (TextView) findViewById(R.id.textView2);
+        if(btss == Res2)
+        {
+
+            selection.setTextSize(150);
+            selection.setTextColor(Color.parseColor("#03DAC6"));
+            selection.setText("✓");
+        }
+        else
+        {
+            selection.setTextSize(150);
+            selection.setTextColor(Color.parseColor("#B00020"));
+            selection.setText("×");
+        }
+
 
     }
 
@@ -527,6 +562,21 @@ public class Kana extends MainActivity {
     String[] str3 = new String[300];
     int index2=10;
 
+
+    void bt_ch()
+    {
+
+        bt =(TextView) findViewById(R.id.bt_ch1);
+        bt.setText(str2[0]);
+        bt =(TextView) findViewById(R.id.bt_ch2);
+        bt.setText(str2[1]);
+        bt =(TextView) findViewById(R.id.bt_ch3);
+        bt.setText(str2[2]);
+        bt =(TextView) findViewById(R.id.bt_ch4);
+        bt.setText(str2[3]);
+        bt =(TextView) findViewById(R.id.bt_ch5);
+        bt.setText(str2[4]);
+    }
 
 
     void Imput(String cstr) {
