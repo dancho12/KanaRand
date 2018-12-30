@@ -10,4 +10,8 @@
     <string name="Full">Случайный символ</string>
     <string name="Switch1">Транскрипция</string>
     <string name="Switch2">Хан/Дакутэн</string>
+    <string name="NumberRand">Случайное число</string>
+    <string name="BackToMenu">Назад в меню</string>
+    <string name="NumberPage">Случайые числа</string>
+    <string name="KanaPage">Хирагана и Катакана</string>
 </resources>

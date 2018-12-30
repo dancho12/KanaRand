@@ -10,4 +10,8 @@
     <string name="Switch1">Transcription</string>
     <string name="Switch2">Han/Dakuten</string>
     <string name="Text" translatable="false">あ</string>
+    <string name="NumberRand">Random number</string>
+    <string name="BackToMenu">Back to menu</string>
+    <string name="NumberPage">Random Number</string>
+    <string name="KanaPage">Kana page</string>
 </resources>
