@@ -2,6 +2,8 @@ package com.example.danch.kanarand;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Handler;
+import android.support.annotation.StringRes;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,6 +22,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.concurrent.TimeUnit;
 
 public class Kana extends MainActivity {
 
@@ -27,14 +30,15 @@ public class Kana extends MainActivity {
     String Res2 = "";
     String Res3 = "";
 
-    String[] rows = {"A", "KA", "SA", "TA", "NA", "HA","MA","YA","RA","WA","WO"};
+    String[] rows = {"A", "KA", "SA", "TA", "NA", "HA","MA","YA","RA","WA"};
     TextView selection;
     String item;
     private int selectedTest;
     RadioGroup radio;
     private int selectedTest2;
     RadioGroup radio2;
-    int ch=0;
+    int ch=0;//переключатель
+
     TextView bt;
 
     @Override
@@ -78,6 +82,8 @@ public class Kana extends MainActivity {
         full_rand2();
         View btr = findViewById(R.id.tbr);
         btr.setVisibility(View.INVISIBLE);
+
+
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -98,6 +104,7 @@ public class Kana extends MainActivity {
     public void show(View v)
     {
         selection = (TextView) findViewById(R.id.textView2);
+        selection.setTextColor(Color.BLACK);
         switch (ch) {
 
             case  0:
@@ -428,11 +435,6 @@ public class Kana extends MainActivity {
                         InputStream fstream11 = getResources().openRawResource(R.raw.wa);
                         readFile(fstream11, r);
                         break;
-                    case "WO":
-                        r = 1;
-                        InputStream fstream12 = getResources().openRawResource(R.raw.wo);
-                        readFile(fstream12, r);
-                        break;
 
                 }
                 break;
@@ -492,11 +494,6 @@ public class Kana extends MainActivity {
                         InputStream fstream11 = getResources().openRawResource(R.raw.wa);
                         readFile(fstream11, r);
                         break;
-                    case "WO":
-                        r = 6;
-                        InputStream fstream12 = getResources().openRawResource(R.raw.wo);
-                        readFile(fstream12, r);
-                        break;
                 }
                 break;
             }
@@ -526,34 +523,98 @@ public class Kana extends MainActivity {
             selection.setText(Res);
             ch=0;
         }
-        bt_ch2();
+        //bt_ch2();
+
+        switch (selectedTest2) {
+            case R.id.radioButton3: {
+                bt_ch(1);
+                break;
+            }
+            case R.id.radioButton4: {
+                bt_ch(0);
+                break;
+            }
+        }
+
     }
 
-    public void click_bt_ch(View v)
+    int crrr = 0;
+    public void test(View v)
     {
-        int bts = v.getId();
-        Log.d("onClick_bt_ch", "bts="+bts);
-        TextView bt = (TextView) findViewById(bts);
-        String btss = bt.getText().toString();
-        Log.d("onClick_bt_ch", "btss="+btss);
-        //Log.d("onClick_bt_ch", "Res="+btss);
+        String[] str  = {"0","1","2"};
         selection = (TextView) findViewById(R.id.textView2);
-        if(btss == Res3)
-        {
-
-            selection.setTextSize(150);
-            selection.setTextColor(Color.parseColor("#03DAC6"));
-            selection.setText("✓");
+        if(crrr<3){
+            selection.setText(str[crrr]);
+            crrr++;
         }
         else
         {
-            selection.setTextSize(150);
-            selection.setTextColor(Color.parseColor("#B00020"));
-            selection.setText("×");
+            crrr=0;
+            selection.setText(str[crrr]);
+            crrr++;
         }
-
-
     }
+
+    int pr_t=0;
+    int value = 0;//счетчик колличества нажатий
+
+    public void click_bt_ch(final View v){
+//        value++;
+//
+//        if(value == 5)
+//        {
+//            final double a = (pr_t*100)/value;
+//
+//            final TextView textView=(TextView)findViewById(R.id.textView2);
+//            final Handler handler = new Handler();
+//            textView.setText(Integer.toString(value));
+//            handler.postDelayed(new Runnable() {
+//                @Override
+//                public void run() {
+//                    textView.setTextColor(Color.BLACK);
+//                    textView.setTextSize(32);
+//                    textView.setText(Double.toString(a)+getString(R.string.proc));
+//                }
+//            }, 800);
+//            fu(v);
+//            value=0;
+//            pr_t =0;
+
+//        }
+//        else {
+
+            int bts = v.getId();
+            Log.d("onClick_bt_ch", "bts=" + bts);
+            TextView bt = (TextView) findViewById(bts);
+            String btss = bt.getText().toString();
+            Log.d("onClick_bt_ch", "btss=" + btss);
+            //Log.d("onClick_bt_ch", "Res="+btss);
+            selection = (TextView) findViewById(R.id.textView2);
+            if (btss == Res3 || btss == Res2) {
+
+                selection.setTextSize(150);
+                selection.setTextColor(Color.parseColor("#03DAC6"));
+                selection.setText("✓");
+                pr_t++;
+            } else {
+                selection.setTextSize(150);
+                selection.setTextColor(Color.parseColor("#B00020"));
+                selection.setText("×");
+            }
+
+
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    fu(v);
+                }
+            }, 500);
+        //}
+    }
+
+
+
 
     String st = "STOP";
     int a=0,b=0,c=0,f=0;
@@ -562,36 +623,35 @@ public class Kana extends MainActivity {
     String[] str3 = new String[300];
     int index2=10;
 
-    void bt_ch2()
+    void bt_ch(int ch)
     {
+        String bt_id[] = {"2131165218","2131165219","2131165220","2131165221","2131165222"};
+        String st = "";
+        for(int i=0;i<5;i++)
+        {
+            int id = Integer.parseInt(bt_id[i]);
+            View btr = findViewById(id);
 
-        bt =(TextView) findViewById(R.id.bt_ch1);
-        bt.setText(str3[0]);
-        bt =(TextView) findViewById(R.id.bt_ch2);
-        bt.setText(str3[1]);
-        bt =(TextView) findViewById(R.id.bt_ch3);
-        bt.setText(str3[2]);
-        bt =(TextView) findViewById(R.id.bt_ch4);
-        bt.setText(str3[3]);
-        bt =(TextView) findViewById(R.id.bt_ch5);
-        bt.setText(str3[4]);
+            bt =(TextView) findViewById(id);
+            if(!str3[i].equals(st)||str2[i].equals(st))
+            {
+                btr.setVisibility(View.VISIBLE);
+                switch (ch)
+                {
+                   case 0:
+                       bt.setText(str2[i]);
+                    break;
+                    case 1:  bt.setText(str3[i]);
+                    break;
+                }
+            }
+            else
+            {
+
+                btr.setVisibility(View.INVISIBLE);
+            }
+        }
     }
-
-    void bt_ch()
-    {
-
-        bt =(TextView) findViewById(R.id.bt_ch1);
-        bt.setText(str2[0]);
-        bt =(TextView) findViewById(R.id.bt_ch2);
-        bt.setText(str2[1]);
-        bt =(TextView) findViewById(R.id.bt_ch3);
-        bt.setText(str2[2]);
-        bt =(TextView) findViewById(R.id.bt_ch4);
-        bt.setText(str2[3]);
-        bt =(TextView) findViewById(R.id.bt_ch5);
-        bt.setText(str2[4]);
-    }
-
 
     void Imput(String cstr) {
         if(!cstr.equals(st)) {
@@ -622,8 +682,11 @@ public class Kana extends MainActivity {
         for (int i = 0; i < b; i++) {
             str[i] = "";
             str2[i] = "";
+            str3[i] = "";
         }
         Res = "";
+        Res2 = "";
+        Res3 = "";
         b = 0;
         a=0;
         c=0;
