@@ -16,5 +16,8 @@
     <string name="KanaPage">Хирагана и Катакана</string>
     <string name="Switch3">Рандом</string>
     <string name="Switch4">Транскрипция</string>
-    <string name="proc">% правильных</string>
+    <string name="TrueRES">Правильных:</string>
+    <string name="NumberR">Числительные</string>
+    <string name="TimeR">Время</string>
+    <string name="Types">Нажато:</string>
 </resources>

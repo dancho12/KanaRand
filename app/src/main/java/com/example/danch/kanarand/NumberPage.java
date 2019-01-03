@@ -3,9 +3,11 @@ package com.example.danch.kanarand;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -18,6 +20,10 @@ public class NumberPage extends MainActivity {
 int ch=0;
 int ch2=0;
 TextView n;
+
+
+    private int selectedTest;
+    private int selectedTest2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,8 +33,14 @@ TextView n;
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        InputStream fstream = getResources().openRawResource(R.raw.num);
-        readFile2(fstream);
+//        InputStream fstream = getResources().openRawResource(R.raw.num);
+//        readFile2(fstream);
+
+        RadioGroup radio = (RadioGroup)findViewById(R.id.radioGroupJR);
+        selectedTest = radio.getCheckedRadioButtonId();
+
+        RadioGroup radio2 = (RadioGroup)findViewById(R.id.radioGroupNT);
+        selectedTest2 = radio2.getCheckedRadioButtonId();
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -46,23 +58,22 @@ TextView n;
         finish();
     }
 
-//    public void visible1(View v)
-//    {
-//        View b = findViewById(R.id.frameLayout);
-//        switch (ch)
-//        {
-//            case 0:b.setVisibility(View.INVISIBLE);
-//            ch = 1;
-//                break;
-//            case 1:
-//                b.setVisibility(View.VISIBLE);
-//                ch = 0;
-//                break;
-//        }
-//    }
+    public void onClickRadioSelectTestJP (View v)
+    {
+        selectedTest = v.getId();
+        Log.d("onClickRadioGroupSelectTest", "selectedTest="+selectedTest);
+    }
+
+    public void onClickRadioSelectTestNT (View v)
+    {
+        selectedTest2 = v.getId();
+        Log.d("onClickRadioGroupSelectTest", "selectedTest="+selectedTest2);
+    }
 
     String st = "STOP";
-    String[] num1 = new String[300];
+    //String[] num1 = new String[300];
+    String[] num1 = {"","ИЧИ", "НИ", "САН", "ЁН", "ГО", "РОКУ", "НАНА", "ХАЧИ", "КЮ:", "ДЗЮ:", "ХЯКУ", "СЕН", "МАН","ОКУ","ТЁ:"};
+    String[] num2 = {"","いち", "に", "さん", "よん", "ご", "ろく", "なな", "はち", "きゅう", "じゅう", "ひゃく", "せん", "まん","おく",""};
     String numres="";
     String numres2 ="";
     String numres3 ="";
@@ -84,33 +95,33 @@ TextView n;
         }
     }
 
-    private void readFile2(InputStream fstream) {
+//    private void readFile2(InputStream fstream) {
+//
+//        try{
+//            int a=0,b=0;
+//            //InputStream fstream = getResources().openRawResource(R.raw.test);
+//            BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
+//            String strLine;
+//            while ((strLine = br.readLine()) != null) {
+//                System.out.println(strLine);
+//
+//                ImputNum(strLine);
+//
+//            }
+//            fstream.close();
+//        }catch (IOException e){
+//            System.out.println("Ошибка");
+//        }
+//    }
+//    void ImputNum(String cstr) {
+//        if(!cstr.equals(st))
+//        {
+//            num1[s] = cstr;
+//            s++;
+//        }
+//    }
 
-        try{
-            int a=0,b=0;
-            //InputStream fstream = getResources().openRawResource(R.raw.test);
-            BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
-            String strLine;
-            while ((strLine = br.readLine()) != null) {
-                System.out.println(strLine);
-
-                ImputNum(strLine);
-
-            }
-            fstream.close();
-        }catch (IOException e){
-            System.out.println("Ошибка");
-        }
-    }
-    void ImputNum(String cstr) {
-        if(!cstr.equals(st))
-        {
-            num1[s] = cstr;
-            s++;
-        }
-    }
-
-    void r(int indx)
+    void r(int indx, String[] num1,int r)
     {
         if(indx<10)
         {
@@ -134,17 +145,38 @@ TextView n;
         else if(indx<1000)
         {
                 if ((indx / 100) == 3) {
-                    numres = numres + " " + "САМБЯКУ";
+                    if(r==1)
+                    {
+                        numres = numres + " " + "САМБЯКУ";
+                    }else if(r==2)
+                    {
+                        numres = numres + " " + "";
+                    }
+
                     indx = indx - 300;
-                    r(indx);
+                    r(indx, num1,r);
                 } else if ((indx / 100) == 6) {
-                    numres = numres + " " + "РОППЯКУ";
+                    if(r==1)
+                    {
+                        numres = numres + " " + "РОППЯКУ";
+                    }else if(r==2)
+               {
+                        numres = numres + " " + "ろっぴゃく";
+                    }
+
                     indx = indx - 600;
-                    r(indx);
+                    r(indx, num1,r);
                 } else if ((indx / 100) == 8) {
-                    numres = numres + " " + "ХАППЯКУ";
+                    if(r==1)
+                    {
+                        numres = numres + " " + "ХАППЯКУ";
+                    }else if(r==2)
+               {
+                        numres = numres + " " + "はっぴゃく";
+                    }
+
                     indx = indx - 800;
-                    r(indx);
+                    r(indx, num1,r);
                 } else {
                     int y = indx / 100;
                     if (y != 1) {
@@ -152,21 +184,35 @@ TextView n;
                     }
                     numres = numres + " " + num1[11];
                     indx = indx - (y * 100);
-                    r(indx);
+                    r(indx, num1,r);
                 }
         }
         else if(indx<10000)
         {
                 if ((indx / 1000) == 3) {
-                    numres = numres + " " + "САНДЗЭН";
+                    if(r==1)
+                    {
+                        numres = numres + " " + "САНДЗЭН";
+                    }else if(r==2)
+                    {
+                        numres = numres + " " + "さんぜん";
+                    }
+
                     indx = indx - 3000;
 
-                    r(indx);
+                    r(indx, num1,r);
                 }
                 else if ((indx / 1000) == 8) {
-                    numres = numres + " " + "ХАССЭН";
+                    if(r==1)
+                    {
+                        numres = numres + " " + "ХАССЭН";
+                    }else if(r==2)
+                    {
+                        numres = numres + " " + "はっせん";
+                    }
+
                     indx = indx - 8000;
-                    r(indx);
+                    r(indx, num1,r);
                 } else {
                     int y = indx / 1000;
                     if (y != 1) {
@@ -174,7 +220,7 @@ TextView n;
                     }
                     numres = numres + " " + num1[12];
                     indx = indx - (y * 1000);
-                    r(indx);
+                    r(indx, num1,r);
                 }
 
         }
@@ -186,12 +232,47 @@ TextView n;
             }
             numres = numres + " " + num1[13];
             indx = indx - (y * 10000);
-            r(indx);
+            r(indx, num1,r);
+        }
+        else if(indx>=100000000)
+        {
+            int y = indx / 100000000;
+            if(y!=1){
+                numres = numres+" "+num1[y];
+            }
+            numres = numres + " " + num1[14];
+            indx = indx - (y * 100000000);
+            r(indx, num1,r);
+        }
+        else if(indx>=1000000000)
+        {
+            int y = indx / 1000000000;
+            if(y!=1){
+                numres = numres+" "+num1[y];
+            }
+            numres = numres + " " + num1[15];
+            indx = indx - (y * 1000000000);
+            r(indx, num1,r);
         }
     }
 
     public void number(View v)
     {
+        int r=0;
+        String[] num = new String[0];
+        switch (selectedTest) {
+            case R.id.radioButtonR: {
+                num = num1;
+                r=1;
+                break;
+            }
+            case R.id.radioButtonJ: {
+
+                num = num2;
+                r=2;
+                break;
+            }
+        }
         Switch simpleSwitch = (Switch) findViewById(R.id.switch3);//переключатель рандома
         Boolean switchState = simpleSwitch.isChecked();
         numres ="";
@@ -213,23 +294,43 @@ TextView n;
         {
             if(indx ==4)
             {
-                numres = "СИ";
+                if(r==1)
+                {
+                    numres = "СИ";
+                }
+                else if(r==2)
+                {
+                    numres = "し";
+                }
+
             }
             else if(indx ==7)
             {
-                numres = "СИЧИ";
+                if(r==1)
+                {
+                    numres = "СИЧИ";
+                }
+                else if(r==2) {
+                    numres = "しち";
+                }
             }
             else if(indx ==9)
             {
-                numres = "КУ";
+                if(r==1)
+                {
+                    numres = "КУ";
+                }
+                else if(r==2) {
+                    numres = "く";
+                }
             }
             else {
-                numres = num1[indx];
+                numres = num[indx];
             }
         }
         else if(indx>10)
         {
-            r(indx);
+            r(indx, num,r);
         }
 
         numres2 = Integer.toString(indx);

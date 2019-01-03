@@ -16,5 +16,8 @@
     <string name="KanaPage">Kana page</string>
     <string name="Switch3">Random</string>
     <string name="Switch4">Transcription</string>
-    <string name="proc">% is true</string>
+    <string name="TrueRES">True:</string>
+    <string name="NumberR">Numbers</string>
+    <string name="TimeR">Time</string>
+    <string name="Types">Pressed:</string>
 </resources>

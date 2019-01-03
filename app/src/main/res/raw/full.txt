@@ -122,6 +122,11 @@
 や
 ゆ
 よ
+ら
+り
+る
+れ
+ろ
 わ
 を
 ん
@@ -162,7 +167,7 @@ DE
 DO
 NA
 NI
-NY
+NU
 NE
 NO
 HA
@@ -183,6 +188,11 @@ MO
 YA
 YU
 YO
+RA
+RI
+RU
+RE
+RO
 WA
 WO
 N
