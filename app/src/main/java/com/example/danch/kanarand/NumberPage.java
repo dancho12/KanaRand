@@ -45,8 +45,7 @@ TextView n;
         RadioGroup radio2 = (RadioGroup)findViewById(R.id.radioGroupNT);
         selectedTest2 = radio2.getCheckedRadioButtonId();
 
-        View btr = findViewById(R.id.tbr2);
-        btr.setVisibility(View.INVISIBLE);
+
 
     }
 
@@ -231,6 +230,39 @@ TextView n;
         }
     }
 
+    public void check_answer(final View v)
+    {
+        value++;
+        final EditText editText = (EditText)findViewById(R.id.editText_answer);
+        String number = editText.getText().toString();
+        int a = Integer.parseInt(number);
+
+        TextView selection = (TextView) findViewById(R.id.textView3);
+        if (a == indx) {
+
+            selection.setTextSize(150);
+            selection.setTextColor(Color.parseColor("#03DAC6"));
+            selection.setText("✓");
+            pr_t++;
+        } else {
+            selection.setTextSize(150);
+            selection.setTextColor(Color.parseColor("#B00020"));
+            selection.setText("×");
+        }
+
+        int proc = ((pr_t*100)/value);
+        TextView tur = (TextView) findViewById(R.id.textViewRES2);
+        tur.setText(getString(R.string.Types)+Integer.toString(value)+"\n"+getString(R.string.TrueRES)+Integer.toString(pr_t)+"\n"+Integer.toString(proc)+"%");
+        editText.setText(null);
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                number(v);
+            }
+        }, 500);
+    }
+
     void r(int indx, String[] num1,int r)
     {
         if(indx<10)
@@ -368,7 +400,7 @@ TextView n;
 
     public void number(View v)
     {
-        View btr = findViewById(R.id.tbr2);
+
         int r=0;
         String[] num = new String[0];
         switch (selectedTest) {
@@ -394,14 +426,13 @@ TextView n;
         a = Integer.parseInt(number);
         if(switchState ==(true)){
             indx = (int) (Math.random() * a + 1);
-            btr.setVisibility(View.VISIBLE);
-            bt_ch();
+
 
         }
         else
         {
             indx = a;
-            btr.setVisibility(View.INVISIBLE);
+
         }
 
         if(indx<11)

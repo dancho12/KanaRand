@@ -6,51 +6,6 @@
     android:layout_height="match_parent"
     tools:layout_editor_absoluteY="81dp">
 
-    <TableRow
-        android:id="@+id/tbr2"
-        android:layout_width="390dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3">
-
-        <Button
-            android:id="@+id/num_bt_ch1"
-            android:layout_width="78dp"
-            android:layout_height="wrap_content"
-            android:onClick="click_bt_ch2"
-            android:text="ХЗ" />
-
-        <Button
-            android:id="@+id/num_bt_ch2"
-            android:layout_width="78dp"
-            android:layout_height="wrap_content"
-            android:onClick="click_bt_ch2"
-            android:text="ХЗ" />
-
-        <Button
-            android:id="@+id/num_bt_ch3"
-            android:layout_width="78dp"
-            android:layout_height="wrap_content"
-            android:onClick="click_bt_ch2"
-            android:text="ХЗ" />
-
-        <Button
-            android:id="@+id/num_bt_ch4"
-            android:layout_width="78dp"
-            android:layout_height="wrap_content"
-            android:onClick="click_bt_ch2"
-            android:text="ХЗ" />
-
-        <Button
-            android:id="@+id/num_bt_ch5"
-            android:layout_width="78dp"
-            android:layout_height="wrap_content"
-            android:onClick="click_bt_ch2"
-            android:text="ХЗ" />
-    </TableRow>
 
     <RadioGroup
         android:id="@+id/radioGroupJR"
@@ -60,7 +15,7 @@
         android:layout_marginEnd="8dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tbr2">
+        app:layout_constraintTop_toBottomOf="@+id/editText_answer">
 
         <RadioButton
             android:id="@+id/radioButtonR"
@@ -89,7 +44,7 @@
         android:layout_marginTop="8dp"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tbr2">
+        app:layout_constraintTop_toBottomOf="@+id/editText_answer">
 
         <RadioButton
             android:id="@+id/radioButtonN"
@@ -178,5 +133,29 @@
         android:text="@string/Switch4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroupNT" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:onClick="check_answer"
+        android:text="@string/Answer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <EditText
+        android:id="@+id/editText_answer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintEnd_toStartOf="@+id/button2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
 </android.support.constraint.ConstraintLayout>
