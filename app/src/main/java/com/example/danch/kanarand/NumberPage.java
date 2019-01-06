@@ -1,7 +1,9 @@
 package com.example.danch.kanarand;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.MenuItem;
@@ -20,6 +22,7 @@ public class NumberPage extends MainActivity {
 int ch=0;
 int ch2=0;
 TextView n;
+
 
 
     private int selectedTest;
@@ -41,6 +44,10 @@ TextView n;
 
         RadioGroup radio2 = (RadioGroup)findViewById(R.id.radioGroupNT);
         selectedTest2 = radio2.getCheckedRadioButtonId();
+
+        View btr = findViewById(R.id.tbr2);
+        btr.setVisibility(View.INVISIBLE);
+
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -73,7 +80,7 @@ TextView n;
     String st = "STOP";
     //String[] num1 = new String[300];
     String[] num1 = {"","ИЧИ", "НИ", "САН", "ЁН", "ГО", "РОКУ", "НАНА", "ХАЧИ", "КЮ:", "ДЗЮ:", "ХЯКУ", "СЕН", "МАН","ОКУ","ТЁ:"};
-    String[] num2 = {"","いち", "に", "さん", "よん", "ご", "ろく", "なな", "はち", "きゅう", "じゅう", "ひゃく", "せん", "まん","おく",""};
+    String[] num2 = {"","いち", "に", "さん", "よん", "ご", "ろく", "なな", "はち", "きゅう", "じゅう", "ひゃく", "せん", "まん","おく","ちょう"};
     String numres="";
     String numres2 ="";
     String numres3 ="";
@@ -121,6 +128,109 @@ TextView n;
 //        }
 //    }
 
+    int value;
+    int indx;
+    int pr_t;
+
+    public void click_bt_ch2(final View v){
+        value++;
+        int bts = v.getId();
+        Log.d("onClick_bt_ch2", "bts=" + bts);
+        TextView bt = (TextView) findViewById(bts);
+       int btss = Integer.parseInt(bt.getText().toString());
+        Log.d("onClick_bt_ch", "btss=" + btss);
+        //Log.d("onClick_bt_ch", "Res="+btss);
+        TextView selection = (TextView) findViewById(R.id.textView3);
+        if (btss == indx) {
+
+            selection.setTextSize(150);
+            selection.setTextColor(Color.parseColor("#03DAC6"));
+            selection.setText("✓");
+            pr_t++;
+        } else {
+            selection.setTextSize(150);
+            selection.setTextColor(Color.parseColor("#B00020"));
+            selection.setText("×");
+        }
+
+        int proc = ((pr_t*100)/value);
+        TextView tur = (TextView) findViewById(R.id.textViewRES2);
+        tur.setText(getString(R.string.Types)+Integer.toString(value)+"\n"+getString(R.string.TrueRES)+Integer.toString(pr_t)+"\n"+Integer.toString(proc)+"%");
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                number(v);
+            }
+        }, 500);
+
+    }
+    int ii;
+    int randomNum_ch(int a)
+    {
+        int d = 2;
+        int b = (int) (Math.random() * d+1);
+
+        if(b==1){
+            if(a<0){
+                a = a+((int) (Math.random() * 20)+1);
+                if(a==ii||a==indx)
+                {
+                    while (a==ii||a==indx)  {
+                        a = a+((int) (Math.random() * 20)+1);
+                    }
+                }
+            }
+        }
+        else if(b==2)
+        {
+            if(a<0){
+                a = a-((int) (Math.random() * 20)+1);
+                if(a==ii||a==indx)
+                {
+                    while (a==ii||a==indx)  {
+                        a = a-((int) (Math.random() * 20)+1);
+                    }
+                }
+            }
+            else
+            {
+                a = a+((int) (Math.random() * 20)+1);
+                if(a==ii||a==indx)
+                {
+                    while (a==ii||a==indx) {
+                        a = a+((int) (Math.random() * 20)+1);
+                    }
+                }
+            }
+
+        }
+        ii = a;
+        return a;
+    }
+    void bt_ch()
+    {
+        String bt_id[] = {"2131165283","2131165284","2131165285","2131165286","2131165287"};
+        String st = "";
+        int index2 = (int) (Math.random() * 5+1 );
+        int id_r = Integer.parseInt(bt_id[index2-1]);
+        TextView bt2 =(TextView) findViewById(id_r);
+        bt2.setText(Integer.toString(indx));
+        for(int i=0;i<5;i++)
+        {
+            if(i!=id_r)
+            {
+                int id = Integer.parseInt(bt_id[i]);
+
+                TextView bt =(TextView) findViewById(id);
+
+                bt.setText(Integer.toString(randomNum_ch(indx)));
+            }
+
+
+        }
+    }
+
     void r(int indx, String[] num1,int r)
     {
         if(indx<10)
@@ -150,7 +260,7 @@ TextView n;
                         numres = numres + " " + "САМБЯКУ";
                     }else if(r==2)
                     {
-                        numres = numres + " " + "";
+                        numres = numres + " " + "さんびゃく";
                     }
 
                     indx = indx - 300;
@@ -258,6 +368,7 @@ TextView n;
 
     public void number(View v)
     {
+        View btr = findViewById(R.id.tbr2);
         int r=0;
         String[] num = new String[0];
         switch (selectedTest) {
@@ -281,13 +392,16 @@ TextView n;
         final EditText editText = (EditText)findViewById(R.id.editText2);
         String number = editText.getText().toString();
         a = Integer.parseInt(number);
-        int indx;
         if(switchState ==(true)){
             indx = (int) (Math.random() * a + 1);
+            btr.setVisibility(View.VISIBLE);
+            bt_ch();
+
         }
         else
         {
             indx = a;
+            btr.setVisibility(View.INVISIBLE);
         }
 
         if(indx<11)
@@ -335,6 +449,7 @@ TextView n;
 
         numres2 = Integer.toString(indx);
         n.setTextSize(36);
+        n.setTextColor(Color.BLACK);
         Switch simpleSwitch2 = (Switch) findViewById(R.id.switch4);
         Boolean switchState2 = simpleSwitch2.isChecked();
         if(switchState2 ==(true))
