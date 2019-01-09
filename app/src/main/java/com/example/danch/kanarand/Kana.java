@@ -570,7 +570,17 @@ public class Kana extends MainActivity {
             } else {
                 selection.setTextSize(150);
                 selection.setTextColor(Color.parseColor("#B00020"));
-                selection.setText("×");
+                //selection.setText("×");
+                switch (selectedTest2) {
+                    case R.id.radioButton3: {
+                        selection.setText(Res3);
+                        break;
+                    }
+                    case R.id.radioButton4: {
+                        selection.setText(Res2);
+                        break;
+                    }
+                }
             }
 
             int proc = ((pr_t*100)/value);
