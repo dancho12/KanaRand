@@ -101,8 +101,10 @@ public class Kana extends MainActivity {
         finish();
     }
 
-
-
+    public void onClick22(View view) {
+        Intent myIntent = new Intent(view.getContext(), com.example.danch.kanarand.KanaCh.class);
+        startActivityForResult(myIntent, 0);
+    }
 
     public void show(View v)
     {

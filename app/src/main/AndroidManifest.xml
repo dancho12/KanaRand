@@ -22,6 +22,10 @@
         <activity android:name=".Kana"
             android:label="@string/KanaPage">
         </activity>
+        <activity android:name=".KanaCh"
+            android:label="KanaCh">
+        </activity>
+
     </application>
 
 </manifest>
