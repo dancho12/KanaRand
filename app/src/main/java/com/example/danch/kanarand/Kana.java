@@ -80,8 +80,8 @@ public class Kana extends MainActivity {
         spinner.setOnItemSelectedListener(itemSelectedListener);
 
         full_rand2();
-//        View btr = findViewById(R.id.tbr);
-//        btr.setVisibility(View.INVISIBLE);
+        pr_t=0;
+        value = 0;
 
 
     }
@@ -100,6 +100,9 @@ public class Kana extends MainActivity {
         setResult(RESULT_OK, intent);
         finish();
     }
+
+
+
 
     public void show(View v)
     {
@@ -549,10 +552,11 @@ public class Kana extends MainActivity {
 
     }
 
-    int pr_t=0;
-    int value = 0;//счетчик колличества нажатий
+
     int tu =0;
     public void click_bt_ch(final View v){
+        Switch simpleSwitch = (Switch) findViewById(R.id.switch1);
+        Boolean switchState = simpleSwitch.isChecked();
             value++;
             int bts = v.getId();
             Log.d("onClick_bt_ch", "bts=" + bts);
@@ -561,7 +565,7 @@ public class Kana extends MainActivity {
             Log.d("onClick_bt_ch", "btss=" + btss);
             //Log.d("onClick_bt_ch", "Res="+btss);
             selection = (TextView) findViewById(R.id.textView2);
-            if (btss == Res3 || btss == Res2) {
+            if (btss == Res3 || btss == Res2|| btss == Res) {
 
                 selection.setTextSize(150);
                 selection.setTextColor(Color.parseColor("#03DAC6"));
@@ -571,15 +575,23 @@ public class Kana extends MainActivity {
                 selection.setTextSize(150);
                 selection.setTextColor(Color.parseColor("#B00020"));
                 //selection.setText("×");
-                switch (selectedTest2) {
-                    case R.id.radioButton3: {
-                        selection.setText(Res3);
-                        break;
-                    }
-                    case R.id.radioButton4: {
-                        selection.setText(Res2);
-                        break;
-                    }
+                if(switchState ==(true))
+                {
+                    selection.setText(Res);
+                }
+                else
+                {
+                    switch (selectedTest2) {
+                        case R.id.radioButton3: {
+                            selection.setText(Res3);
+                            break;
+                        }
+                        case R.id.radioButton4: {
+                            selection.setText(Res2);
+                            break;
+                        }
+                }
+
                 }
             }
 
@@ -617,6 +629,8 @@ public class Kana extends MainActivity {
     void bt_ch(int ch)
     {
         tu =1;
+        Switch simpleSwitch = (Switch) findViewById(R.id.switch1);
+        Boolean switchState = simpleSwitch.isChecked();
         String bt_id[] = {"2131165218","2131165219","2131165220","2131165221","2131165222"};
         String st = "";
         for(int i=0;i<5;i++)
@@ -628,14 +642,22 @@ public class Kana extends MainActivity {
             if(!str3[i].equals(st)||str2[i].equals(st))
             {
                 btr.setVisibility(View.VISIBLE);
-                switch (ch)
+                if(switchState ==(true))
                 {
-                   case 0:
-                       bt.setText(str2[i]);
-                    break;
-                    case 1:  bt.setText(str3[i]);
-                    break;
+                    bt.setText(str[i]);
                 }
+                else
+                {
+                    switch (ch)
+                    {
+                        case 0:
+                            bt.setText(str2[i]);
+                            break;
+                        case 1:  bt.setText(str3[i]);
+                            break;
+                    }
+                }
+
             }
             else
             {
@@ -648,19 +670,29 @@ public class Kana extends MainActivity {
     void bt_ch_rand(int ch)
     {
         tu =2;
+        Switch simpleSwitch = (Switch) findViewById(R.id.switch1);
+        Boolean switchState = simpleSwitch.isChecked();
         String bt_id[] = {"2131165218","2131165219","2131165220","2131165221","2131165222"};
         String st = "";
         int index2 = (int) (Math.random() * 5+1 );
         int id_r = Integer.parseInt(bt_id[index2-1]);
         bt =(TextView) findViewById(id_r);
-        switch (ch)
+        if(switchState ==(true))
         {
-            case 0:
-                bt.setText(str2[index-1]);
-                break;
-            case 1:  bt.setText(str3[index-1]);
-                break;
+            bt.setText(str[index-1]);
         }
+        else
+        {
+            switch (ch)
+            {
+                case 0:
+                    bt.setText(str2[index-1]);
+                    break;
+                case 1:  bt.setText(str3[index-1]);
+                    break;
+            }
+        }
+
         for(int i=0;i<5;i++)
         {
             if(i!=(index2-1))
@@ -679,14 +711,22 @@ public class Kana extends MainActivity {
                 if(!str3[ii].equals(st)||str2[ii].equals(st))
                 {
                     btr.setVisibility(View.VISIBLE);
-                    switch (ch)
+                    if(switchState == (true))
                     {
-                        case 0:
-                            bt.setText(str2[ii]);
-                            break;
-                        case 1:  bt.setText(str3[ii]);
-                            break;
+                        bt.setText(str[ii]);
                     }
+                    else
+                    {
+                        switch (ch)
+                        {
+                            case 0:
+                                bt.setText(str2[ii]);
+                                break;
+                            case 1:  bt.setText(str3[ii]);
+                                break;
+                        }
+                    }
+
                 }
                 else
                 {

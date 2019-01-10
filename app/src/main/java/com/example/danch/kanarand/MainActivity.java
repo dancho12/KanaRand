@@ -20,8 +20,8 @@ import java.io.InputStreamReader;
 
 public class MainActivity extends AppCompatActivity {
 
-
-
+    int pr_t=0;
+    int value = 0;//счетчик колличества нажатий
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,5 +38,15 @@ public class MainActivity extends AppCompatActivity {
         Intent myIntent = new Intent(view.getContext(), Kana.class);
         startActivityForResult(myIntent, 0);
     }
+
+    public void clean_RES(View v)
+    {
+        pr_t=0;
+        value = 0;
+        int b = v.getId();
+        TextView se = (TextView)findViewById(b);
+        se.setText(null);
+    }
+
 
 }

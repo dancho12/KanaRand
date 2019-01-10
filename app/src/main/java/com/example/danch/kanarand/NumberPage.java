@@ -44,7 +44,8 @@ TextView n;
 
         RadioGroup radio2 = (RadioGroup)findViewById(R.id.radioGroupNT);
         selectedTest2 = radio2.getCheckedRadioButtonId();
-
+        pr_t=0;
+        value = 0;
 
 
     }
@@ -127,9 +128,10 @@ TextView n;
 //        }
 //    }
 
-    int value;
+//    int value;
+//    int pr_t;
     int indx;
-    int pr_t;
+
 
     public void click_bt_ch2(final View v){
         value++;
