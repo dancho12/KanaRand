@@ -36,37 +36,10 @@
             android:text="@string/radioButton2" />
     </RadioGroup>
 
-    <RadioGroup
-        android:id="@+id/radioGroupNT"
-        android:layout_width="0dp"
-        android:layout_height="34dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_answer">
-
-        <RadioButton
-            android:id="@+id/radioButtonN"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:onClick="onClickRadioSelectTestNT"
-            android:text="@string/NumberR" />
-
-        <RadioButton
-            android:id="@+id/radioButtonT"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="onClickRadioSelectTestNT"
-            android:text="@string/TimeR" />
-    </RadioGroup>
-
     <TextView
         android:id="@+id/textView3"
         android:layout_width="397dp"
-        android:layout_height="167dp"
+        android:layout_height="172dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -94,24 +67,24 @@
         android:id="@+id/editText2"
         android:layout_width="205dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="8dp"
         android:ems="10"
-        android:inputType="number"
+        android:hint="Число и время(ЧЧ:ММ) "
+        android:inputType="time"
+        android:singleLine="false"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/switch4" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_answer" />
 
     <Button
         android:id="@+id/button6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:onClick="number"
         android:text="@string/NumberRand"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/editText2"
         app:layout_constraintTop_toBottomOf="@+id/switch3"
         tools:text="@string/NumberRand" />
 
@@ -119,21 +92,23 @@
         android:id="@+id/switch3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
+        android:checked="true"
         android:text="@string/Switch3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroupJR" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroupJR"
+        tools:checked="true" />
 
     <Switch
         android:id="@+id/switch4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:text="@string/Switch4"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroupNT" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroupJR" />
 
     <Button
         android:id="@+id/button2"
@@ -154,9 +129,22 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
-        android:inputType="number"
+        android:hint="Ответ"
+        android:inputType="time"
         app:layout_constraintEnd_toStartOf="@+id/button2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:onClick="time"
+        android:text="@string/TimeR"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/switch4" />
+
 
 </android.support.constraint.ConstraintLayout>

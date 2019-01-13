@@ -18,7 +18,7 @@
     <string name="Switch4">Транскрипция</string>
     <string name="TrueRES">Правильных:</string>
     <string name="NumberR">Числительные</string>
-    <string name="TimeR">Время</string>
+    <string name="TimeR">Генерировать время</string>
     <string name="Types">Нажато:</string>
     <string name="Answer">Ответ</string>
 </resources>

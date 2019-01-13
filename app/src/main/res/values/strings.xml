@@ -18,7 +18,7 @@
     <string name="Switch4">Transcription</string>
     <string name="TrueRES">True:</string>
     <string name="NumberR">Numbers</string>
-    <string name="TimeR">Time</string>
+    <string name="TimeR">Generate time</string>
     <string name="Types">Pressed:</string>
     <string name="Answer">Answer</string>
 </resources>

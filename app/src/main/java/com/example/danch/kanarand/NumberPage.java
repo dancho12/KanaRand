@@ -42,8 +42,8 @@ TextView n;
         RadioGroup radio = (RadioGroup)findViewById(R.id.radioGroupJR);
         selectedTest = radio.getCheckedRadioButtonId();
 
-        RadioGroup radio2 = (RadioGroup)findViewById(R.id.radioGroupNT);
-        selectedTest2 = radio2.getCheckedRadioButtonId();
+//        RadioGroup radio2 = (RadioGroup)findViewById(R.id.radioGroupNT);
+//        selectedTest2 = radio2.getCheckedRadioButtonId();
         pr_t=0;
         value = 0;
 
@@ -237,10 +237,17 @@ TextView n;
         value++;
         final EditText editText = (EditText)findViewById(R.id.editText_answer);
         String number = editText.getText().toString();
-        int a = Integer.parseInt(number);
+        boolean isContain = number.contains(":");
+        int a=0;
+        if(isContain == (false))
+        {
+            a = Integer.parseInt(number);
+        }
 
+        Log.d("check_answer1", "number="+number);
+        Log.d("check_answer1", "numres2="+numres2);
         TextView selection = (TextView) findViewById(R.id.textView3);
-        if (a == indx) {
+        if (a == indx||number.equals(numres2)) {
 
             selection.setTextSize(150);
             selection.setTextColor(Color.parseColor("#03DAC6"));
@@ -422,10 +429,14 @@ TextView n;
         Boolean switchState = simpleSwitch.isChecked();
         numres ="";
         n= (TextView)findViewById(R.id.textView3);
-        int a;
+        int a =10000;
         final EditText editText = (EditText)findViewById(R.id.editText2);
         String number = editText.getText().toString();
-        a = Integer.parseInt(number);
+        String ddd ="";
+        if(!number.equals(ddd))
+        {
+            a = Integer.parseInt(number);
+        }
         if(switchState ==(true)){
             indx = (int) (Math.random() * a + 1);
 
@@ -433,6 +444,7 @@ TextView n;
         }
         else
         {
+            a = Integer.parseInt(number);
             indx = a;
 
         }
@@ -481,6 +493,139 @@ TextView n;
         }
 
         numres2 = Integer.toString(indx);
+        n.setTextSize(36);
+        n.setTextColor(Color.BLACK);
+        Switch simpleSwitch2 = (Switch) findViewById(R.id.switch4);
+        Boolean switchState2 = simpleSwitch2.isChecked();
+        if(switchState2 ==(true))
+        {
+            n.setText(numres2);
+            ch2 = 1;
+        }
+        else {
+            n.setText(numres);
+            ch2 = 0;
+        }
+
+
+
+    }
+
+    String numH="";
+    String numM="";
+    void hours(int num)
+    {
+        numH = "";
+        String[] num11 = {"","ИЧИДЗИ", "НИДЗИ", "САНДЗИ", "ЁДЗИ", "ГОДЗИ", "РОКУДЗИ", "СИТИДЗИ", "ХАТИДЗИ", "КУДЗИ:", "ДЗЮ:ДЗИ", "ДЗЮ:ИТИДЗИ", "ДЗЮ:НИДЗИ"};
+        String[] num2 = {"","いちじ", "にじ", "さんじ", "よじ", "ごじ", "ろくじ", "しちじ", "はち", "くじ", "じゅうじ", "じゅいちじ", "じゅにじ"};
+        String[] num1 = new String[0];
+        switch (selectedTest) {
+            case R.id.radioButtonR: {
+                num1 = num11;
+                break;
+            }
+            case R.id.radioButtonJ: {
+
+                num1 = num2;
+                break;
+            }
+        }
+        numH = num1[num];
+        Log.d("time", "numH="+numH);
+    }
+
+
+    void min(int num)
+    {
+        numM = "";
+        String[] num11 = {"","ИПУН", "НИФУН", "САНПУН", "ЁНПУН", "ГОФУН", "РОПУН", "НАНАФУН", "ХАППУН", "КЮ:ФУН", "ДЗЮППУН", "САНДЗЮПУН"};
+        String[] num22 = {"","いっぷん", "にふん", "さんぷん", "よんぷん", "ごふん", "ろっぷん", "ななふん", "はっぷん", "きゅうふん", "じゅっぷん", "さんじゅぷん"};
+        int r=0;
+        String[] numN = new String[0];
+        String[] numY = new String[0];
+        switch (selectedTest) {
+            case R.id.radioButtonR: {
+                numN = num11;
+                numY = num1;
+                r=1;
+                break;
+            }
+            case R.id.radioButtonJ: {
+
+                numN = num22;
+                numY = num2;
+                r=2;
+                break;
+            }
+        }
+
+        if(num<10)
+        {
+
+
+            numM = numM + numN[num];
+
+        }
+        else if(num==30)
+        {
+            numM = numM + numN[11];
+        }
+        else if(num<60){
+            int y = num/10;
+            if(y!=1){
+                numM = numM+numY[y];
+            }
+
+            y = num%10;
+            if(y!=0) {
+                numM = numM+numY[10];
+                numM = numM+ numN[y];
+            }
+            else if(y==0)
+            {
+                numM = numM+ numN[10];
+            }
+
+        }
+        Log.d("time", "numN="+numM);
+    }
+    public void time(View v)
+    {
+        int a = 0;
+        int b = 0;
+        Switch simpleSwitch = (Switch) findViewById(R.id.switch3);//переключатель рандома
+        Boolean switchState = simpleSwitch.isChecked();
+        if(switchState ==(false)){
+            final EditText editText = (EditText)findViewById(R.id.editText2);
+            String number = editText.getText().toString();
+            String[] numParts = number.split(":");
+
+            a = Integer.parseInt(numParts[0]);
+            if(a>12)
+            {
+                a=a-12;
+            }
+            b = Integer.parseInt(numParts[1]);
+        }
+        else {
+            a = (int) (Math.random() * 12 + 1);
+            b = (int) (Math.random() * 60 + 1);
+        }
+        hours(a);
+        min(b);
+        String oa = "";
+        String ob = "";
+        if(a<10)
+        {
+            oa = "0";
+        }
+        if(b<10)
+        {
+            ob="0";
+        }
+        numres2 = oa+Integer.toString(a)+":"+ob+Integer.toString(b);
+        numres = numH+" : "+numM;
+        n = (TextView)findViewById(R.id.textView3);
         n.setTextSize(36);
         n.setTextColor(Color.BLACK);
         Switch simpleSwitch2 = (Switch) findViewById(R.id.switch4);
