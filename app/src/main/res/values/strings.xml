@@ -21,4 +21,7 @@
     <string name="TimeR">Generate time</string>
     <string name="Types">Pressed:</string>
     <string name="Answer">Answer</string>
+    <string name="Calendar">Calendar</string>
+    <string name="Time">Time</string>
+    <string name="Generate">Generate</string>
 </resources>

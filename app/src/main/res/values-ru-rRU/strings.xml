@@ -21,4 +21,7 @@
     <string name="TimeR">Генерировать время</string>
     <string name="Types">Нажато:</string>
     <string name="Answer">Ответ</string>
+    <string name="Calendar">Календарь</string>
+    <string name="Time">Время</string>
+    <string name="Generate">Генерировать</string>
 </resources>

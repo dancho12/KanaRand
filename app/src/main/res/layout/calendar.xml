@@ -8,7 +8,7 @@
 
 
     <RadioGroup
-        android:id="@+id/radioGroupJR"
+        android:id="@+id/radioGroupJR2"
         android:layout_width="0dp"
         android:layout_height="34dp"
         android:layout_marginTop="8dp"
@@ -18,7 +18,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editText_answer">
 
         <RadioButton
-            android:id="@+id/radioButtonR"
+            android:id="@+id/radioButtonR2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -27,7 +27,7 @@
             android:text="@string/radioButton3" />
 
         <RadioButton
-            android:id="@+id/radioButtonJ"
+            android:id="@+id/radioButtonJ2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -64,52 +64,39 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText2"
-        android:layout_width="0dp"
+        android:id="@+id/editTextCl"
+        android:layout_width="205dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
         android:ems="10"
-        android:hint="Число"
-        android:inputType="time"
+        android:hint="Дата(ДД/ММ)"
+        android:inputType="date"
         android:singleLine="false"
-        app:layout_constraintEnd_toStartOf="@+id/button6"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/switch4" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_answer" />
 
-    <Button
-        android:id="@+id/button6"
+    <Switch
+        android:id="@+id/switchRnCl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:onClick="number"
-        android:text="@string/Generate"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/switch3" />
-
-    <Switch
-        android:id="@+id/switch3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="32dp"
         android:checked="true"
         android:text="@string/Switch3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroupJR"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroupJR2"
         tools:checked="true" />
 
     <Switch
-        android:id="@+id/switch4"
+        android:id="@+id/switchTRCl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="@string/Switch4"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroupJR" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextCl" />
 
     <Button
         android:id="@+id/button2"
@@ -117,24 +104,33 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:onClick="check_answerN"
+        android:onClick="check_answerC"
         android:text="@string/Answer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <EditText
         android:id="@+id/editText_answer"
-        android:layout_width="0dp"
+        android:layout_width="299dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="@string/Answer"
-        android:inputType="time"
-        app:layout_constraintEnd_toStartOf="@+id/button2"
+        android:inputType="date"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:onClick="calendar"
+        android:text="@string/Generate"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/switchTRCl" />
 
 
 </android.support.constraint.ConstraintLayout>

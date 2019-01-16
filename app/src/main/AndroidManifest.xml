@@ -25,6 +25,15 @@
         <activity android:name=".KanaCh"
             android:label="KanaCh">
         </activity>
+        <activity android:name=".Time"
+            android:label="@string/Time">
+        </activity>
+        <activity android:name=".Calendar"
+            android:label="@string/Calendar">
+        </activity>
+        <activity android:name=".Numbers"
+            android:label="@string/NumberPage">
+        </activity>
 
     </application>
 

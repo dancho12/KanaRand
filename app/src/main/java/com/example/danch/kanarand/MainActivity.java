@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClick(View view) {
-        Intent myIntent = new Intent(view.getContext(), NumberPage.class);
+        Intent myIntent = new Intent(view.getContext(), Numbers.class);
         startActivityForResult(myIntent, 0);
     }
 

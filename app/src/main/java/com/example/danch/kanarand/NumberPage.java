@@ -18,15 +18,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-public class NumberPage extends MainActivity {
+public class NumberPage extends Numbers {
 int ch=0;
 int ch2=0;
 TextView n;
 
 
 
-    private int selectedTest;
-    private int selectedTest2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,30 +58,20 @@ TextView n;
                 return super.onOptionsItemSelected(item);
         }
     }
+
     public void onClick(View view) {
         Intent intent = new Intent();
         setResult(RESULT_OK, intent);
         finish();
     }
 
-    public void onClickRadioSelectTestJP (View v)
-    {
-        selectedTest = v.getId();
-        Log.d("onClickRadioGroupSelectTest", "selectedTest="+selectedTest);
-    }
-
-    public void onClickRadioSelectTestNT (View v)
-    {
-        selectedTest2 = v.getId();
-        Log.d("onClickRadioGroupSelectTest", "selectedTest="+selectedTest2);
-    }
 
     String st = "STOP";
     //String[] num1 = new String[300];
     String[] num1 = {"","ИЧИ", "НИ", "САН", "ЁН", "ГО", "РОКУ", "НАНА", "ХАЧИ", "КЮ:", "ДЗЮ:", "ХЯКУ", "СЕН", "МАН","ОКУ","ТЁ:"};
     String[] num2 = {"","いち", "に", "さん", "よん", "ご", "ろく", "なな", "はち", "きゅう", "じゅう", "ひゃく", "せん", "まん","おく","ちょう"};
-    String numres="";
-    String numres2 ="";
+//    String numres="";
+//    String numres2 ="";
     String numres3 ="";
     int s = 1;
 
@@ -130,7 +119,7 @@ TextView n;
 
 //    int value;
 //    int pr_t;
-    int indx;
+    //int indx;
 
 
     public void click_bt_ch2(final View v){
@@ -155,7 +144,7 @@ TextView n;
         }
 
         int proc = ((pr_t*100)/value);
-        TextView tur = (TextView) findViewById(R.id.textViewRES2);
+        TextView tur = (TextView) findViewById(R.id.textViewRESTime);
         tur.setText(getString(R.string.Types)+Integer.toString(value)+"\n"+getString(R.string.TrueRES)+Integer.toString(pr_t)+"\n"+Integer.toString(proc)+"%");
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -232,37 +221,9 @@ TextView n;
         }
     }
 
-    public void check_answer(final View v)
+    public void check_answerN(final View v)
     {
-        value++;
-        final EditText editText = (EditText)findViewById(R.id.editText_answer);
-        String number = editText.getText().toString();
-        boolean isContain = number.contains(":");
-        int a=0;
-        if(isContain == (false))
-        {
-            a = Integer.parseInt(number);
-        }
-
-        Log.d("check_answer1", "number="+number);
-        Log.d("check_answer1", "numres2="+numres2);
-        TextView selection = (TextView) findViewById(R.id.textView3);
-        if (a == indx||number.equals(numres2)) {
-
-            selection.setTextSize(150);
-            selection.setTextColor(Color.parseColor("#03DAC6"));
-            selection.setText("✓");
-            pr_t++;
-        } else {
-            selection.setTextSize(150);
-            selection.setTextColor(Color.parseColor("#B00020"));
-            selection.setText("×");
-        }
-
-        int proc = ((pr_t*100)/value);
-        TextView tur = (TextView) findViewById(R.id.textViewRES2);
-        tur.setText(getString(R.string.Types)+Integer.toString(value)+"\n"+getString(R.string.TrueRES)+Integer.toString(pr_t)+"\n"+Integer.toString(proc)+"%");
-        editText.setText(null);
+       check_answer();
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
@@ -511,134 +472,4 @@ TextView n;
 
     }
 
-    String numH="";
-    String numM="";
-    void hours(int num)
-    {
-        numH = "";
-        String[] num11 = {"","ИЧИДЗИ", "НИДЗИ", "САНДЗИ", "ЁДЗИ", "ГОДЗИ", "РОКУДЗИ", "СИТИДЗИ", "ХАТИДЗИ", "КУДЗИ:", "ДЗЮ:ДЗИ", "ДЗЮ:ИТИДЗИ", "ДЗЮ:НИДЗИ"};
-        String[] num2 = {"","いちじ", "にじ", "さんじ", "よじ", "ごじ", "ろくじ", "しちじ", "はち", "くじ", "じゅうじ", "じゅいちじ", "じゅにじ"};
-        String[] num1 = new String[0];
-        switch (selectedTest) {
-            case R.id.radioButtonR: {
-                num1 = num11;
-                break;
-            }
-            case R.id.radioButtonJ: {
-
-                num1 = num2;
-                break;
-            }
-        }
-        numH = num1[num];
-        Log.d("time", "numH="+numH);
-    }
-
-
-    void min(int num)
-    {
-        numM = "";
-        String[] num11 = {"","ИПУН", "НИФУН", "САНПУН", "ЁНПУН", "ГОФУН", "РОПУН", "НАНАФУН", "ХАППУН", "КЮ:ФУН", "ДЗЮППУН", "САНДЗЮПУН"};
-        String[] num22 = {"","いっぷん", "にふん", "さんぷん", "よんぷん", "ごふん", "ろっぷん", "ななふん", "はっぷん", "きゅうふん", "じゅっぷん", "さんじゅぷん"};
-        int r=0;
-        String[] numN = new String[0];
-        String[] numY = new String[0];
-        switch (selectedTest) {
-            case R.id.radioButtonR: {
-                numN = num11;
-                numY = num1;
-                r=1;
-                break;
-            }
-            case R.id.radioButtonJ: {
-
-                numN = num22;
-                numY = num2;
-                r=2;
-                break;
-            }
-        }
-
-        if(num<10)
-        {
-
-
-            numM = numM + numN[num];
-
-        }
-        else if(num==30)
-        {
-            numM = numM + numN[11];
-        }
-        else if(num<60){
-            int y = num/10;
-            if(y!=1){
-                numM = numM+numY[y];
-            }
-
-            y = num%10;
-            if(y!=0) {
-                numM = numM+numY[10];
-                numM = numM+ numN[y];
-            }
-            else if(y==0)
-            {
-                numM = numM+ numN[10];
-            }
-
-        }
-        Log.d("time", "numN="+numM);
-    }
-    public void time(View v)
-    {
-        int a = 0;
-        int b = 0;
-        Switch simpleSwitch = (Switch) findViewById(R.id.switch3);//переключатель рандома
-        Boolean switchState = simpleSwitch.isChecked();
-        if(switchState ==(false)){
-            final EditText editText = (EditText)findViewById(R.id.editText2);
-            String number = editText.getText().toString();
-            String[] numParts = number.split(":");
-
-            a = Integer.parseInt(numParts[0]);
-            if(a>12)
-            {
-                a=a-12;
-            }
-            b = Integer.parseInt(numParts[1]);
-        }
-        else {
-            a = (int) (Math.random() * 12 + 1);
-            b = (int) (Math.random() * 60 + 1);
-        }
-        hours(a);
-        min(b);
-        String oa = "";
-        String ob = "";
-        if(a<10)
-        {
-            oa = "0";
-        }
-        if(b<10)
-        {
-            ob="0";
-        }
-        numres2 = oa+Integer.toString(a)+":"+ob+Integer.toString(b);
-        numres = numH+" : "+numM;
-        n = (TextView)findViewById(R.id.textView3);
-        n.setTextSize(36);
-        n.setTextColor(Color.BLACK);
-        Switch simpleSwitch2 = (Switch) findViewById(R.id.switch4);
-        Boolean switchState2 = simpleSwitch2.isChecked();
-        if(switchState2 ==(true))
-        {
-            n.setText(numres2);
-            ch2 = 1;
-        }
-        else {
-            n.setText(numres);
-            ch2 = 0;
-        }
-
-    }
 }
