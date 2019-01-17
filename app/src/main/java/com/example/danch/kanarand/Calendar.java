@@ -110,7 +110,7 @@ public class Calendar extends Numbers {
     {
         numMo = "";
         String[] num11 = {"","ИЧИГАЦУ", "НИГАЦУ", "САНГАЦУ", "СИГАЦУ", "ГОГАЦУ", "РОКУГАЦУ", "СИТИГАЦУ", "ХАЧИГАЦУ", "КУГАЦУ", "ДЗЮ:ГАЦУ", "ДЗЮ:ИТИГАЦУ", "ДЗЮ:НИГАЦУ"};
-        String[] num2 = {"","いちがつ", "にがつ", "さんがつ", "しがつ", "ごがつ", "ろくがつ", "しちがつ", "はちがつ", "くがつ", "じゅうがつ", "じゅいちがつ", "じゅにがつ"};
+        String[] num2 = {"","いちがつ", "にがつ", "さんがつ", "しがつ", "ごがつ", "ろくがつ", "しちがつ", "はちがつ", "くがつ", "じゅうがつ", "じゅういちがつ", "じゅうにがつ"};
         String[] num1 = new String[0];
         switch (selectedTest) {
             case R.id.radioButtonR2: {
@@ -204,8 +204,8 @@ public class Calendar extends Numbers {
             Log.d("Calendar","etidtext"+number);
             String[] numParts = number.split("/");
 
-            a = Integer.parseInt(numParts[0]);
-            b = Integer.parseInt(numParts[1]);
+            b = Integer.parseInt(numParts[0]);
+            a = Integer.parseInt(numParts[1]);
         }
         else {
             a = (int) (Math.random() * 12 + 1);
