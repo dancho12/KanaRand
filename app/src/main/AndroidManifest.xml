@@ -34,6 +34,9 @@
         <activity android:name=".Numbers"
             android:label="@string/NumberPage">
         </activity>
+        <activity android:name=".Word"
+            android:label="Word">
+        </activity>
 
     </application>
 

@@ -39,6 +39,10 @@ public class MainActivity extends AppCompatActivity {
         startActivityForResult(myIntent, 0);
     }
 
+    public void onClick3(View view) {
+        Intent myIntent = new Intent(view.getContext(), Word.class);
+        startActivityForResult(myIntent, 0);
+    }
     public void clean_RES(View v)
     {
         pr_t=0;
