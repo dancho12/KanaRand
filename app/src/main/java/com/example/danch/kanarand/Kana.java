@@ -30,14 +30,14 @@ public class Kana extends MainActivity {
     String Res2 = "";
     String Res3 = "";
 
-    String[] rows = {"A", "KA", "SA", "TA", "NA", "HA","MA","YA","RA","WA"};
+    String[] rows = {"A", "KA", "SA", "TA", "NA", "HA", "MA", "YA", "RA", "WA"};
     TextView selection;
     String item;
     private int selectedTest;
     RadioGroup radio;
     private int selectedTest2;
     RadioGroup radio2;
-    int ch=0;//переключатель
+    int ch = 0;//переключатель
 
     TextView bt;
 
@@ -46,14 +46,14 @@ public class Kana extends MainActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.kana);
 
-        ActionBar actionBar =getSupportActionBar();
+        ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        RadioGroup radio = (RadioGroup)findViewById(R.id.radioGroup1);
+        RadioGroup radio = (RadioGroup) findViewById(R.id.radioGroup1);
         selectedTest = radio.getCheckedRadioButtonId();
 
-        RadioGroup radio2 = (RadioGroup)findViewById(R.id.radioGroup2);
+        RadioGroup radio2 = (RadioGroup) findViewById(R.id.radioGroup2);
         selectedTest2 = radio2.getCheckedRadioButtonId();
 
         Spinner spinner = (Spinner) findViewById(R.id.kana_select);
@@ -69,7 +69,7 @@ public class Kana extends MainActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 // Получаем выбранный объект
-                item = (String)parent.getItemAtPosition(position);
+                item = (String) parent.getItemAtPosition(position);
             }
 
             @Override
@@ -80,7 +80,7 @@ public class Kana extends MainActivity {
         spinner.setOnItemSelectedListener(itemSelectedListener);
 
         full_rand2();
-        pr_t=0;
+        pr_t = 0;
         value = 0;
 
 
@@ -95,6 +95,7 @@ public class Kana extends MainActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
     public void onClick6(View view) {
         Intent intent = new Intent();
         setResult(RESULT_OK, intent);
@@ -106,13 +107,12 @@ public class Kana extends MainActivity {
 //        startActivityForResult(myIntent, 0);
 //    }
 
-    public void show(View v)
-    {
+    public void show(View v) {
         selection = (TextView) findViewById(R.id.textView2);
         selection.setTextColor(Color.BLACK);
         switch (ch) {
 
-            case  0:
+            case 0:
                 switch (selectedTest2) {
                     case R.id.radioButton3: {
                         selection.setText(Res3);
@@ -141,8 +141,8 @@ public class Kana extends MainActivity {
         Switch simpleSwitch = (Switch) findViewById(R.id.switch2);
         Boolean switchState = simpleSwitch.isChecked();
 
-        try{
-            int a=0,b=0;
+        try {
+            int a = 0, b = 0;
             //InputStream fstream = getResources().openRawResource(R.raw.test);
             BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
             String strLine;
@@ -186,9 +186,7 @@ public class Kana extends MainActivity {
 
                             Imput(strLine);
                         }
-                    }
-                    else
-                    {
+                    } else {
                         if (a < 6) {
 
                             Imput(strLine);
@@ -202,9 +200,7 @@ public class Kana extends MainActivity {
 
                             Imput(strLine);
                         }
-                    }
-                    else
-                    {
+                    } else {
                         if (a < 6) {
 
                             Imput(strLine);
@@ -219,9 +215,7 @@ public class Kana extends MainActivity {
                             Imput(strLine);
 
                         }
-                    }
-                    else
-                    {
+                    } else {
                         if (a > 10 && a < 16) {
 
                             Imput(strLine);
@@ -237,9 +231,7 @@ public class Kana extends MainActivity {
                             Imput(strLine);
 
                         }
-                    }
-                    else
-                    {
+                    } else {
                         if (a > 15 && a < 21) {
 
                             Imput(strLine);
@@ -265,69 +257,64 @@ public class Kana extends MainActivity {
 
                         Imput3(strLine);
                     }
-                }
-                else
-                {
-                    if (b > 30 && b<36 &&((r == 10 || r == 11))) {
+                } else {
+                    if (b > 30 && b < 36 && ((r == 10 || r == 11))) {
 
                         Imput2(strLine);
                     }
-                    if (b > 45 &&b<51 &&(r == 10 || r == 11)) {
+                    if (b > 45 && b < 51 && (r == 10 || r == 11)) {
 
                         Imput3(strLine);
                     }
 
-                    if (b > 20 && b<26 &&((r == 9 || r == 8))) {
+                    if (b > 20 && b < 26 && ((r == 9 || r == 8))) {
 
                         Imput2(strLine);
                     }
-                    if (b > 30 &&b<36 &&(r == 9 || r == 8)) {
+                    if (b > 30 && b < 36 && (r == 9 || r == 8)) {
 
                         Imput3(strLine);
                     }
                 }
 
-                if (b > 10&&(r==6||r==1)) {
+                if (b > 10 && (r == 6 || r == 1)) {
 
                     Imput2(strLine);
                 }
-                if (b > 15&&(r==6||r==1)) {
+                if (b > 15 && (r == 6 || r == 1)) {
 
                     Imput3(strLine);
                 }
-                if (b > 132&&(r==2||r==3)) {
+                if (b > 132 && (r == 2 || r == 3)) {
 
                     Imput2(strLine);
                 }
-                if (b > 198&&(r==2||r==3)) {
+                if (b > 198 && (r == 2 || r == 3)) {
 
                     Imput3(strLine);
                 }
             }
             fstream.close();
-        }catch (IOException e){
+        } catch (IOException e) {
             System.out.println("Ошибка");
         }
     }
 
-    public void onClickRadioSelectTest (View v)
-    {
+    public void onClickRadioSelectTest(View v) {
         selectedTest = v.getId();
-        Log.d("onClickRadioGroupSelectTest", "selectedTest="+selectedTest);
+        Log.d("onClickRadioGroupSelectTest", "selectedTest=" + selectedTest);
     }
 
-    public void onClickRadioSelectTest2 (View v)
-    {
+    public void onClickRadioSelectTest2(View v) {
         selectedTest2 = v.getId();
-        Log.d("onClickRadioGroupSelectTest", "selectedTest="+selectedTest2);
+        Log.d("onClickRadioGroupSelectTest", "selectedTest=" + selectedTest2);
     }
-    public void full_rand(View v)
-    {
+
+    public void full_rand(View v) {
         full_rand2();
     }
 
-    void full_rand2()
-    {
+    void full_rand2() {
 //        View btr = findViewById(R.id.tbr);
 //        btr.setVisibility(View.INVISIBLE);
         Clean();
@@ -372,7 +359,7 @@ public class Kana extends MainActivity {
         } else {
             //selection.setText(OutPutRand());
             selection.setText(Res);
-            ch=0;
+            ch = 0;
         }
 
         switch (selectedTest2) {
@@ -538,7 +525,7 @@ public class Kana extends MainActivity {
         } else {
             //selection.setText(OutPutRand());
             selection.setText(Res);
-            ch=0;
+            ch = 0;
         }
 
         switch (selectedTest2) {
@@ -555,185 +542,157 @@ public class Kana extends MainActivity {
     }
 
 
-    int tu =0;
-    public void click_bt_ch(final View v){
+    int tu = 0;
+
+    public void click_bt_ch(final View v) {
         Switch simpleSwitch = (Switch) findViewById(R.id.switch1);
         Boolean switchState = simpleSwitch.isChecked();
-            value++;
-            int bts = v.getId();
+        value++;
+        int bts = v.getId();
 
-            Log.d("onClick_bt_ch", "bts=" + bts);
-            TextView bt = (TextView) findViewById(bts);
-            String btss = bt.getText().toString();
-            Log.d("onClick_bt_ch", "btss=" + btss);
-            //Log.d("onClick_bt_ch", "Res="+btss);
-            selection = (TextView) findViewById(R.id.textView2);
-            if (btss == Res3 || btss == Res2|| btss == Res) {
+        Log.d("onClick_bt_ch", "bts=" + bts);
+        TextView bt = (TextView) findViewById(bts);
+        String btss = bt.getText().toString();
+        Log.d("onClick_bt_ch", "btss=" + btss);
+        //Log.d("onClick_bt_ch", "Res="+btss);
+        selection = (TextView) findViewById(R.id.textView2);
+        if (btss == Res3 || btss == Res2 || btss == Res) {
 
-                selection.setTextSize(150);
-                selection.setTextColor(Color.parseColor("#03DAC6"));
-                selection.setText("✓");
-                pr_t++;
+            selection.setTextSize(150);
+            selection.setTextColor(Color.parseColor("#03DAC6"));
+            selection.setText("✓");
+            pr_t++;
+        } else {
+            selection.setTextSize(150);
+            selection.setTextColor(Color.parseColor("#B00020"));
+            //selection.setText("×");
+            if (switchState == (true)) {
+                selection.setText(Res);
             } else {
-                selection.setTextSize(150);
-                selection.setTextColor(Color.parseColor("#B00020"));
-                //selection.setText("×");
-                if(switchState ==(true))
-                {
-                    selection.setText(Res);
-                }
-                else
-                {
-                    switch (selectedTest2) {
-                        case R.id.radioButton3: {
-                            selection.setText(Res3);
-                            break;
-                        }
-                        case R.id.radioButton4: {
-                            selection.setText(Res2);
-                            break;
-                        }
+                switch (selectedTest2) {
+                    case R.id.radioButton3: {
+                        selection.setText(Res3);
+                        break;
+                    }
+                    case R.id.radioButton4: {
+                        selection.setText(Res2);
+                        break;
+                    }
                 }
 
+            }
+        }
+
+        int proc = ((pr_t * 100) / value);
+        TextView tur = (TextView) findViewById(R.id.textViewRES);
+        tur.setText(getString(R.string.Types) + Integer.toString(value) + "\n" + getString(R.string.TrueRES) + Integer.toString(pr_t) + "\n" + Integer.toString(proc) + "%");
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (tu == 1) {
+                    fu(v);
+                } else if (tu == 2) {
+                    full_rand(v);
                 }
             }
-
-            int proc = ((pr_t*100)/value);
-            TextView tur = (TextView) findViewById(R.id.textViewRES);
-            tur.setText(getString(R.string.Types)+Integer.toString(value)+"\n"+getString(R.string.TrueRES)+Integer.toString(pr_t)+"\n"+Integer.toString(proc)+"%");
-            final Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    if(tu==1)
-                    {
-                        fu(v);
-                    }
-                    else if(tu==2)
-                    {
-                        full_rand(v);
-                    }
-                }
-            }, 500);
+        }, 500);
 
     }
 
 
-
-
     String st = "STOP";
-    int a=0,b=0,c=0,f=0;
-    String[] str =new String[300];
+    int a = 0, b = 0, c = 0, f = 0;
+    String[] str = new String[300];
     String[] str2 = new String[300];
     String[] str3 = new String[300];
-    int index2=10;
+    int index2 = 10;
     int index;
 
-    void bt_ch(int ch)
-    {
-        tu =1;
+    void bt_ch(int ch) {
+        tu = 1;
         Switch simpleSwitch = (Switch) findViewById(R.id.switch1);
         Boolean switchState = simpleSwitch.isChecked();
-        int bt_id[] = {R.id.bt_ch1,R.id.bt_ch2,R.id.bt_ch3,R.id.bt_ch4,R.id.bt_ch5};
+        int bt_id[] = {R.id.bt_ch1, R.id.bt_ch2, R.id.bt_ch3, R.id.bt_ch4, R.id.bt_ch5};
 
         String st = "";
-        for(int i=0;i<5;i++)
-        {
-            int id =bt_id[i];
+        for (int i = 0; i < 5; i++) {
+            int id = bt_id[i];
             View btr = findViewById(id);
 
-            bt =(TextView) findViewById(id);
-            if(!str3[i].equals(st)||str2[i].equals(st))
-            {
+            bt = (TextView) findViewById(id);
+            if (!str3[i].equals(st) || str2[i].equals(st)) {
                 btr.setVisibility(View.VISIBLE);
-                if(switchState ==(true))
-                {
+                if (switchState == (true)) {
                     bt.setText(str[i]);
-                }
-                else
-                {
-                    switch (ch)
-                    {
+                } else {
+                    switch (ch) {
                         case 0:
                             bt.setText(str2[i]);
                             break;
-                        case 1:  bt.setText(str3[i]);
+                        case 1:
+                            bt.setText(str3[i]);
                             break;
                     }
                 }
 
-            }
-            else
-            {
+            } else {
 
                 btr.setVisibility(View.INVISIBLE);
             }
         }
     }
 
-    void bt_ch_rand(int ch)
-    {
-        tu =2;
+    void bt_ch_rand(int ch) {
+        tu = 2;
         Switch simpleSwitch = (Switch) findViewById(R.id.switch1);
         Boolean switchState = simpleSwitch.isChecked();
-        int bt_id[] = {R.id.bt_ch1,R.id.bt_ch2,R.id.bt_ch3,R.id.bt_ch4,R.id.bt_ch5};
+        int bt_id[] = {R.id.bt_ch1, R.id.bt_ch2, R.id.bt_ch3, R.id.bt_ch4, R.id.bt_ch5};
         String st = "";
-        int index2 = (int) (Math.random() * 5+1 );
-        int id_r = bt_id[index2-1];
-        bt =(TextView) findViewById(id_r);
-        if(switchState ==(true))
-        {
-            bt.setText(str[index-1]);
-        }
-        else
-        {
-            switch (ch)
-            {
+        int index2 = (int) (Math.random() * 5 + 1);
+        int id_r = bt_id[index2 - 1];
+        bt = (TextView) findViewById(id_r);
+        if (switchState == (true)) {
+            bt.setText(str[index - 1]);
+        } else {
+            switch (ch) {
                 case 0:
-                    bt.setText(str2[index-1]);
+                    bt.setText(str2[index - 1]);
                     break;
-                case 1:  bt.setText(str3[index-1]);
+                case 1:
+                    bt.setText(str3[index - 1]);
                     break;
             }
         }
 
-        for(int i=0;i<5;i++)
-        {
-            if(i!=(index2-1))
-            {
-                int ii = (int) (Math.random() * b );
-                if(ii==index-1)
-                {
-                    while (ii==index-1) {
-                        ii = (int) (Math.random() * b );
+        for (int i = 0; i < 5; i++) {
+            if (i != (index2 - 1)) {
+                int ii = (int) (Math.random() * b);
+                if (ii == index - 1) {
+                    while (ii == index - 1) {
+                        ii = (int) (Math.random() * b);
                     }
                 }
                 int id = bt_id[i];
                 View btr = findViewById(id);
 
-                bt =(TextView) findViewById(id);
-                if(!str3[ii].equals(st)||str2[ii].equals(st))
-                {
+                bt = (TextView) findViewById(id);
+                if (!str3[ii].equals(st) || str2[ii].equals(st)) {
                     btr.setVisibility(View.VISIBLE);
-                    if(switchState == (true))
-                    {
+                    if (switchState == (true)) {
                         bt.setText(str[ii]);
-                    }
-                    else
-                    {
-                        switch (ch)
-                        {
+                    } else {
+                        switch (ch) {
                             case 0:
                                 bt.setText(str2[ii]);
                                 break;
-                            case 1:  bt.setText(str3[ii]);
+                            case 1:
+                                bt.setText(str3[ii]);
                                 break;
                         }
                     }
 
-                }
-                else
-                {
+                } else {
 
                     btr.setVisibility(View.INVISIBLE);
                 }
@@ -743,22 +702,21 @@ public class Kana extends MainActivity {
     }
 
     void Imput(String cstr) {
-        if(!cstr.equals(st)) {
+        if (!cstr.equals(st)) {
             str[b] = cstr;
             b++;
         }
     }
 
     void Imput2(String cstr) {
-        if(!cstr.equals(st))
-        {
+        if (!cstr.equals(st)) {
             str2[a] = cstr;
             a++;
         }
     }
+
     void Imput3(String cstr) {
-        if(!cstr.equals(st))
-        {
+        if (!cstr.equals(st)) {
             str3[c] = cstr;
             c++;
         }
@@ -777,23 +735,22 @@ public class Kana extends MainActivity {
         Res2 = "";
         Res3 = "";
         b = 0;
-        a=0;
-        c=0;
+        a = 0;
+        c = 0;
     }
 
     void Rand() {
 
-        index = (int) ( Math.random() * b+1);
-        if(index==index2)
-        {
-            while (index==index2) {
+        index = (int) (Math.random() * b + 1);
+        if (index == index2) {
+            while (index == index2) {
                 index = (int) (Math.random() * b + 1);
             }
         }
-        index2 =index;
-        Res = str[index-1];
-        Res2 = str2[index-1];
-        Res3 = str3[index-1];
+        index2 = index;
+        Res = str[index - 1];
+        Res2 = str2[index - 1];
+        Res3 = str3[index - 1];
     }
 
 }
