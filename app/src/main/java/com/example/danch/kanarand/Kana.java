@@ -561,6 +561,7 @@ public class Kana extends MainActivity {
         Boolean switchState = simpleSwitch.isChecked();
             value++;
             int bts = v.getId();
+
             Log.d("onClick_bt_ch", "bts=" + bts);
             TextView bt = (TextView) findViewById(bts);
             String btss = bt.getText().toString();
@@ -633,11 +634,12 @@ public class Kana extends MainActivity {
         tu =1;
         Switch simpleSwitch = (Switch) findViewById(R.id.switch1);
         Boolean switchState = simpleSwitch.isChecked();
-        String bt_id[] = {"2131165218","2131165219","2131165220","2131165221","2131165222"};
+        int bt_id[] = {R.id.bt_ch1,R.id.bt_ch2,R.id.bt_ch3,R.id.bt_ch4,R.id.bt_ch5};
+
         String st = "";
         for(int i=0;i<5;i++)
         {
-            int id = Integer.parseInt(bt_id[i]);
+            int id =bt_id[i];
             View btr = findViewById(id);
 
             bt =(TextView) findViewById(id);
@@ -674,10 +676,10 @@ public class Kana extends MainActivity {
         tu =2;
         Switch simpleSwitch = (Switch) findViewById(R.id.switch1);
         Boolean switchState = simpleSwitch.isChecked();
-        String bt_id[] = {"2131165218","2131165219","2131165220","2131165221","2131165222"};
+        int bt_id[] = {R.id.bt_ch1,R.id.bt_ch2,R.id.bt_ch3,R.id.bt_ch4,R.id.bt_ch5};
         String st = "";
         int index2 = (int) (Math.random() * 5+1 );
-        int id_r = Integer.parseInt(bt_id[index2-1]);
+        int id_r = bt_id[index2-1];
         bt =(TextView) findViewById(id_r);
         if(switchState ==(true))
         {
@@ -706,7 +708,7 @@ public class Kana extends MainActivity {
                         ii = (int) (Math.random() * b );
                     }
                 }
-                int id = Integer.parseInt(bt_id[i]);
+                int id = bt_id[i];
                 View btr = findViewById(id);
 
                 bt =(TextView) findViewById(id);
